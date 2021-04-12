@@ -13,15 +13,4 @@ public class KeyState {
     public boolean keyDown(int keyCode) {
         return states[keyCode];
     }
-
-
-    public boolean press(int keyCode) {
-        return !oldStates[keyCode] && states[keyCode];
-    }
-
-    public boolean realise(int keyCode) {
-        return oldStates[keyCode] && !states[keyCode];
-    }
-
-
 }

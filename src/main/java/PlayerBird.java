@@ -2,7 +2,6 @@ import java.awt.*;
 
 public class PlayerBird extends Actor {
 
-
     @Override
     public void up() {
         super.up();
@@ -36,7 +35,7 @@ public class PlayerBird extends Actor {
     }
 
     PlayerBird(double x, double y) {
-        super(x, y, "player.png", new Point(0, 0), 5);
+        super(x, y, PlayerBird.class.getClassLoader().getResource("player.png").getPath(), new Point(0, 0), 5);
         // Сделать сеттеры для этих полей
         s.frameWidth = 110;
         s.frameHeight = 101;

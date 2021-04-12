@@ -5,8 +5,6 @@ import java.awt.event.KeyListener;
 
 public class Panel extends JPanel implements KeyListener {
 
-    Menu menu = new Menu();
-
     KeyState keyState = new KeyState();
     Actor act = new PlayerBird(300, 400);
     Actor act3 = new PlayerBird(0, 400);
@@ -55,8 +53,6 @@ public class Panel extends JPanel implements KeyListener {
     private void paintGame(Graphics g) {
         act.paint(g);
         act2.paint(g);
-
-        menu.paint(g);
     }
 
 
@@ -66,17 +62,9 @@ public class Panel extends JPanel implements KeyListener {
         t2 = System.currentTimeMillis();
         int ms = (int) (t2 - t1);
 
-          /*  elapsedTime += ms;
-
-            if (elapsedTime >= time) {
-                elapsedTime = 0;
-
-            }*/
-
         controlGame();
         updateGame(ms);
         paintGame(g);
-
 
         t1 = t2;
         repaint();
@@ -89,21 +77,7 @@ public class Panel extends JPanel implements KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
-
         keyState.setKeyState(e.getKeyCode(), true);
-
-        if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-            menu.next();
-        } else if (e.getKeyCode() == KeyEvent.VK_UP) {
-            menu.prev();
-        } else if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-            // Если в режиме меню
-            menu.select();
-        } else if (e.getKeyCode() == KeyEvent.VK_PAUSE) {
-            // Если в режиме меню
-            menu.toggle();
-        }
-
     }
 
     @Override

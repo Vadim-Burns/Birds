@@ -3,7 +3,7 @@ import java.awt.*;
 public class EnemyBird extends Actor  {
 
     EnemyBird(double x, double y) {
-        super(x, y, "player.png", new Point(0, 0), 5);
+        super(x, y, EnemyBird.class.getClassLoader().getResource("player.png").getPath(), new Point(0, 0), 5);
         // Сделать сеттеры для этих полей
         s.frameWidth = 110;
         s.frameHeight = 101;
