@@ -1,3 +1,5 @@
+package utils;
+
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
@@ -25,11 +27,11 @@ public class Sound {
 		}
 	}
 
-	public static void jump() {
+	public static void playJumpSound() {
 		playSound("jump.wav");
 	}
 
-	public static void backgroundMusic() {
+	public static void playBackgroundMusic() {
 		playSound("funny_birds.wav");
 	}
 }

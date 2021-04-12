@@ -1,3 +1,8 @@
+package models;
+
+import textures.RectangularCollider;
+import textures.Sprite;
+
 import java.awt.*;
 
 public abstract class Actor {
@@ -74,7 +79,6 @@ public abstract class Actor {
         }
 
         s.update(ms);
-        // Лучше использовать геттеры
-        collider.update(s.x, s.y);
+        collider.update(s.getX(), s.getY());
     }
 }

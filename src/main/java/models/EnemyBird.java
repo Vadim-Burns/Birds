@@ -1,12 +1,14 @@
+package models;
+
 import java.awt.*;
 
-public class EnemyBird extends Actor  {
+public class EnemyBird extends Actor {
 
-    EnemyBird(double x, double y) {
+    public EnemyBird(double x, double y) {
         super(x, y, EnemyBird.class.getClassLoader().getResource("player.png").getPath(), new Point(0, 0));
         // Сделать сеттеры для этих полей
-        s.frameWidth = 110;
-        s.frameHeight = 101;
+        s.setFrameWidth(110);
+        s.setFrameHeight(101);
 
         int frame = 0;
         for (int i = 0; i < 3; i++) {
@@ -14,25 +16,25 @@ public class EnemyBird extends Actor  {
                 if (frame == 0 || frame == 14) {
                     continue;
                 }
-                s.addFrame(new Point(j * s.frameWidth, i * s.frameHeight));
+                s.addFrame(new Point(j * s.getFrameWidth(), i * s.getFrameHeight()));
             }
         }
 
-       respawn();
+        respawn();
     }
 
     @Override
     public void update(int ms) {
         super.update(ms);
-        if (s.getX() < -s.frameWidth ) {
+        if (s.getX() < -s.getFrameWidth()) {
             respawn();
         }
 
     }
 
     private void respawn() {
-        s.y = Math.random() * 500;
-        s.x = 2000 + Math.random() * 500;
+        s.setY(Math.random() * 500);
+        s.setX(2000 + Math.random() * 500);
         left();
     }
 

@@ -1,3 +1,5 @@
+package textures;
+
 import java.awt.*;
 
 public class RectangularCollider {

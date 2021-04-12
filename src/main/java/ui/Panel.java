@@ -1,3 +1,10 @@
+package ui;
+
+import models.Actor;
+import models.EnemyBird;
+import models.PlayerBird;
+import utils.KeyState;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -38,15 +45,10 @@ public class Panel extends JPanel implements KeyListener {
     }
 
     private void updateGame(int ms) {
-
-
         act.update(ms);
-
         act2.update(ms);
 
         act.intersects(act2);
-
-
     }
 
     private void paintGame(Graphics g) {

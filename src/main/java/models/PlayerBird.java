@@ -1,3 +1,7 @@
+package models;
+
+import utils.Sound;
+
 import java.awt.*;
 
 public class PlayerBird extends Actor {
@@ -5,20 +9,20 @@ public class PlayerBird extends Actor {
     @Override
     public void up() {
         super.up();
-        Sound.jump();
+        Sound.playJumpSound();
     }
 
     @Override
     public void down() {
         super.down();
-        Sound.jump();
+        Sound.playJumpSound();
     }
 
     @Override
     public void paint(Graphics g) {
         super.paint(g);
         g.setColor(Color.GREEN);
-        g.fillRect((int) s.getX(), (int) s.getY() + s.frameHeight, (int) (hp / 100.0 * s.frameWidth), 3);
+        g.fillRect((int) s.getX(), (int) s.getY() + s.getFrameHeight(), (int) (hp / 100.0 * s.getFrameWidth()), 3);
     }
 
     @Override
@@ -26,19 +30,19 @@ public class PlayerBird extends Actor {
         super.update(ms);
 
         if (s.getY() < 0) {
-            s.y = 0;
+            s.setY(0);
             down();
         } else if (s.getY() > 700) {
-            s.y = 700;
+            s.setY(700);
             up();
         }
     }
 
-    PlayerBird(double x, double y) {
+    public PlayerBird(double x, double y) {
         super(x, y, PlayerBird.class.getClassLoader().getResource("player.png").getPath(), new Point(0, 0));
         // Сделать сеттеры для этих полей
-        s.frameWidth = 110;
-        s.frameHeight = 101;
+        s.setFrameWidth(110);
+        s.setFrameHeight(101);
 
         int frame = 0;
         for (int i = 0; i < 3; i++) {
@@ -46,7 +50,7 @@ public class PlayerBird extends Actor {
                 if (frame == 0 || frame == 14) {
                     continue;
                 }
-                s.addFrame(new Point(j * s.frameWidth, i * s.frameHeight));
+                s.addFrame(new Point(j * s.getFrameWidth(), i * s.getFrameHeight()));
             }
         }
 

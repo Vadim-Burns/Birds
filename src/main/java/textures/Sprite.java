@@ -1,3 +1,5 @@
+package textures;
+
 import java.awt.*;
 import java.util.ArrayList;
 
@@ -140,5 +142,45 @@ public class Sprite extends Texture {
         g.drawImage(image, x_canvas1, y_canvas1, x_canvas2, y_canvas2, x_image1, y_image1, x_image2, y_image2, null);
 
 
+    }
+
+    public ArrayList<Point> getFrames() {
+        return frames;
+    }
+
+    public void setFrames(ArrayList<Point> frames) {
+        this.frames = frames;
+    }
+
+    public int getCurrentFrame() {
+        return currentFrame;
+    }
+
+    public void setCurrentFrame(int currentFrame) {
+        this.currentFrame = currentFrame;
+    }
+
+    public int getElapsedTime() {
+        return elapsedTime;
+    }
+
+    public void setElapsedTime(int elapsedTime) {
+        this.elapsedTime = elapsedTime;
+    }
+
+    public int getFrameWidth() {
+        return frameWidth;
+    }
+
+    public void setFrameWidth(int frameWidth) {
+        this.frameWidth = frameWidth;
+    }
+
+    public int getFrameHeight() {
+        return frameHeight;
+    }
+
+    public void setFrameHeight(int frameHeight) {
+        this.frameHeight = frameHeight;
     }
 }

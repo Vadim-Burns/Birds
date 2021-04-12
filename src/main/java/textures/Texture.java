@@ -1,3 +1,5 @@
+package textures;
+
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -32,5 +34,13 @@ public class Texture {
 
     public void paint(Graphics g) {
         g.drawImage(image, (int) x, (int) y, null);
+    }
+
+    public void setX(double x) {
+        this.x = x;
+    }
+
+    public void setY(double y) {
+        this.y = y;
     }
 }

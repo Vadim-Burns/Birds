@@ -1,3 +1,5 @@
+package utils;
+
 public class KeyState {
     private boolean[] states = new boolean[256];
     private boolean[] oldStates = new boolean[256];
