@@ -6,13 +6,13 @@ public class PlayerBird extends Actor {
     @Override
     public void up() {
         super.up();
-        Sound.playSound("jump.wav");
+        Sound.jump();
     }
 
     @Override
     public void down() {
         super.down();
-        Sound.playSound("jump.wav");
+        Sound.jump();
     }
 
     @Override

@@ -9,17 +9,12 @@ public class Panel extends JPanel implements KeyListener, MouseListener {
 
     Menu menu = new Menu();
 
-
     KeyState keyState = new KeyState();
-    Texture bird = new Texture(100, 0, "player_frame.png");
-    Texture bird2 = new Sprite(100, 300, "player.png");
     Actor act = new PlayerBird(300, 400);
+    Actor act3 = new PlayerBird(0, 400);
     Actor act2 = new EnemyBird(300, 400);
 
     long t1, t2;
-
-    int elapsedTime = 0;
-    int time = 2000;
 
     public Panel() {
         setFocusable(true);
