@@ -14,10 +14,6 @@ public class Sprite extends Texture {
 
     protected boolean visible = true;
 
-
-
-
-
     public void toggleVisible() {
         visible = !visible;
     }

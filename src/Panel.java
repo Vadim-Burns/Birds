@@ -2,10 +2,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 
-public class Panel extends JPanel implements KeyListener, MouseListener {
+public class Panel extends JPanel implements KeyListener {
 
     Menu menu = new Menu();
 
@@ -111,36 +109,5 @@ public class Panel extends JPanel implements KeyListener, MouseListener {
     @Override
     public void keyReleased(KeyEvent e) {
         keyState.setKeyState(e.getKeyCode(), false);
-    }
-
-    @Override
-    public void mouseClicked(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mousePressed(MouseEvent e) {
-        int x = e.getX();
-        int y = e.getY();
-
-        if (x > act.collider.x && x < act.collider.x + act.collider.w) {
-            act.hide();
-        }
-
-    }
-
-    @Override
-    public void mouseReleased(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mouseEntered(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mouseExited(MouseEvent e) {
-
     }
 }
