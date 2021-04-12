@@ -42,8 +42,8 @@ public abstract class Actor {
         active = false;
     }
 
-    Actor(double x, double y, String fileName, Point p) {
-        s = new Sprite(x, y, fileName, p);
+    Actor(double x, double y, String filePath, Point p) {
+        s = new Sprite(x, y, filePath, p);
         collider = new RectangularCollider(x, y, 100, 100);
     }
 

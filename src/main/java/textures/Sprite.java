@@ -61,14 +61,14 @@ public class Sprite extends Texture {
         this.visible = visible;
     }
 
-    public Sprite(double x, double y, String fileName, Point p, double alpha, double speed) {
-        this(x, y, fileName, p);
+    public Sprite(double x, double y, String filePath, Point p, double alpha, double speed) {
+        this(x, y, filePath, p);
         this.alpha = alpha;
         this.speed = speed;
     }
 
-    public Sprite(double x, double y, String fileName, Point p) {
-        super(x, y, fileName);
+    public Sprite(double x, double y, String filePath, Point p) {
+        super(x, y, filePath);
         addFrame(p);
     }
 
