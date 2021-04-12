@@ -16,12 +16,26 @@ public class Panel extends JPanel implements KeyListener {
     Actor act = new PlayerBird(300, 400);
     Actor act2 = new EnemyBird(300, 400);
 
+    private boolean isGameThreadEnabled = false;
+
     long t1, t2;
 
     public Panel() {
         setFocusable(true);
         setBackground(Color.BLACK);
         t1 = System.currentTimeMillis();
+
+//        new Thread(() -> {
+//            System.out.println("Start UI thread");
+//            while (true) {
+//                try {
+//                    repaint();
+//                    Thread.sleep(10);
+//                } catch (InterruptedException e) {
+//                    break;
+//                }
+//            }
+//        }).start();
     }
 
     private void controlGame() {
@@ -60,15 +74,32 @@ public class Panel extends JPanel implements KeyListener {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        t2 = System.currentTimeMillis();
-        int ms = (int) (t2 - t1);
+        startGameThread(g);
+    }
 
-        controlGame();
-        updateGame(ms);
-        paintGame(g);
+    private void startGameThread(Graphics g) {
+        if (!isGameThreadEnabled) {
+            isGameThreadEnabled = true;
 
-        t1 = t2;
-        repaint();
+            new Thread(() -> {
+                while (true) {
+                    try {
+                        t2 = System.currentTimeMillis();
+                        int ms = (int) (t2 - t1);
+
+                        controlGame();
+                        updateGame(ms);
+                        paintGame(g);
+
+                        t1 = t2;
+
+                        Thread.sleep(100);
+                    } catch (InterruptedException e) {
+                        break;
+                    }
+                }
+            }).start();
+        }
     }
 
     @Override

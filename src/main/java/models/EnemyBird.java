@@ -24,7 +24,7 @@ public class EnemyBird extends Bird {
     private void respawn() {
         s.setY(Math.random() * 500);
         s.setX(2000 + Math.random() * 500);
-        left();
+        s.setAlpha(Math.PI);
     }
 
     @Override

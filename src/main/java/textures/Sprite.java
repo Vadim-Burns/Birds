@@ -16,10 +16,6 @@ public class Sprite extends Texture {
 
     protected boolean visible = true;
 
-    public void toggleVisible() {
-        visible = !visible;
-    }
-
     public void show() {
         visible = true;
     }
@@ -28,53 +24,13 @@ public class Sprite extends Texture {
         visible = false;
     }
 
-
-    public double getAlpha() {
-        return alpha;
-    }
-
     public void setAlpha(double alpha) {
         this.alpha = alpha;
-    }
-
-    public double getSpeed() {
-        return speed;
-    }
-
-    public void setSpeed(double speed) {
-        this.speed = speed;
-    }
-
-    public int getFrameTime() {
-        return frameTime;
-    }
-
-    public void setFrameTime(int frameTime) {
-        this.frameTime = frameTime;
-    }
-
-    public boolean isVisible() {
-        return visible;
-    }
-
-    public void setVisible(boolean visible) {
-        this.visible = visible;
-    }
-
-    public Sprite(double x, double y, String filePath, Point p, double alpha, double speed) {
-        this(x, y, filePath, p);
-        this.alpha = alpha;
-        this.speed = speed;
     }
 
     public Sprite(double x, double y, String filePath, Point p) {
         super(x, y, filePath);
         addFrame(p);
-    }
-
-    public Sprite(double x, double y, String fileName) {
-        this(x, y, fileName, new Point(0, 0));
-
     }
 
 
@@ -140,32 +96,6 @@ public class Sprite extends Texture {
         y_canvas2 = y_canvas1 + frameHeight;
 
         g.drawImage(image, x_canvas1, y_canvas1, x_canvas2, y_canvas2, x_image1, y_image1, x_image2, y_image2, null);
-
-
-    }
-
-    public ArrayList<Point> getFrames() {
-        return frames;
-    }
-
-    public void setFrames(ArrayList<Point> frames) {
-        this.frames = frames;
-    }
-
-    public int getCurrentFrame() {
-        return currentFrame;
-    }
-
-    public void setCurrentFrame(int currentFrame) {
-        this.currentFrame = currentFrame;
-    }
-
-    public int getElapsedTime() {
-        return elapsedTime;
-    }
-
-    public void setElapsedTime(int elapsedTime) {
-        this.elapsedTime = elapsedTime;
     }
 
     public int getFrameWidth() {

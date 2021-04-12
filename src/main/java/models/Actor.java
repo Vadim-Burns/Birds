@@ -29,14 +29,6 @@ public abstract class Actor {
         s.setAlpha(Math.PI / 2);
     }
 
-    public void left() {
-        s.setAlpha(Math.PI);
-    }
-
-    public void right() {
-        s.setAlpha(0);
-    }
-
     public void die() {
         hp = 0;
         active = false;
