@@ -7,7 +7,6 @@ public class Panel extends JPanel implements KeyListener {
 
     KeyState keyState = new KeyState();
     Actor act = new PlayerBird(300, 400);
-    Actor act3 = new PlayerBird(0, 400);
     Actor act2 = new EnemyBird(300, 400);
 
     long t1, t2;

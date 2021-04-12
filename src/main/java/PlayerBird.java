@@ -35,7 +35,7 @@ public class PlayerBird extends Actor {
     }
 
     PlayerBird(double x, double y) {
-        super(x, y, PlayerBird.class.getClassLoader().getResource("player.png").getPath(), new Point(0, 0), 5);
+        super(x, y, PlayerBird.class.getClassLoader().getResource("player.png").getPath(), new Point(0, 0));
         // Сделать сеттеры для этих полей
         s.frameWidth = 110;
         s.frameHeight = 101;
@@ -47,13 +47,10 @@ public class PlayerBird extends Actor {
                     continue;
                 }
                 s.addFrame(new Point(j * s.frameWidth, i * s.frameHeight));
-
             }
-
         }
 
         up();
-
     }
 
     @Override

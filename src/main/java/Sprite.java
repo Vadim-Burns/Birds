@@ -9,7 +9,7 @@ public class Sprite extends Texture {
     protected ArrayList<Point> frames = new ArrayList<Point>();
     protected int currentFrame = 0;
     protected int elapsedTime = 0;
-    protected int frameTime = 100;
+    protected int frameTime = 50;
     protected int frameWidth = 100, frameHeight = 100;
 
     protected boolean visible = true;

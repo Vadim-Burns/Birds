@@ -4,13 +4,6 @@ public class RectangularCollider {
 
     double x, y;
     int w, h;
-    int pad;
-
-
-    public RectangularCollider(double x, double y, int w, int h, int pad) {
-        this(x, y, w, h);
-        this.pad = pad;
-    }
 
     public RectangularCollider(double x, double y, int w, int h) {
         this.x = x;
@@ -25,7 +18,7 @@ public class RectangularCollider {
     }
 
     private Rectangle getRectangle() {
-        return new Rectangle((int) x + pad, (int) y + pad, w - pad * 2, h - pad * 2);
+        return new Rectangle((int) x, (int) y, w, h);
     }
 
 

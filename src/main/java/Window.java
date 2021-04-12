@@ -10,16 +10,6 @@ public class Window extends JFrame {
         addKeyListener(p);
 
         revalidate();
-
-//        while (true) {
-//            try {
-//                repaint();
-//                wait(10);
-//            } catch (InterruptedException e) {
-//                e.printStackTrace();
-//                break;
-//            }
-//        }
     }
 
     private void initMetaInfo() {
