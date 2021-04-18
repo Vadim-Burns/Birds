@@ -4,6 +4,8 @@ import java.awt.*;
 
 public class PlayerBird extends Actor implements Movable {
 
+    private final int speed = 5;
+
     public PlayerBird() {
         super(
                 100,
@@ -50,11 +52,11 @@ public class PlayerBird extends Actor implements Movable {
 
     @Override
     public void up() {
-        System.out.println("UP");
+        sprite.changePoint(sprite.getX(), sprite.getY() - speed);
     }
 
     @Override
     public void down() {
-        System.out.println("DOWN");
+        sprite.changePoint(sprite.getX(), sprite.getY() + speed);
     }
 }

@@ -26,7 +26,6 @@ public class Sprite extends Texture {
         }
     }
 
-
     @Override
     public void paint(Graphics g) {
         nextFrame();
@@ -46,6 +45,11 @@ public class Sprite extends Texture {
         y_canvas2 = y_canvas1 + frameHeight;
 
         g.drawImage(image, x_canvas1, y_canvas1, x_canvas2, y_canvas2, x_image1, y_image1, x_image2, y_image2, null);
+    }
+
+    public void changePoint(double x, double y) {
+        this.x = x;
+        this.y = y;
     }
 
     public int getFrameWidth() {
