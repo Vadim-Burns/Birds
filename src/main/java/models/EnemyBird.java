@@ -47,14 +47,6 @@ public class EnemyBird extends Actor implements UnExitable {
         ).start();
     }
 
-    @Override
-    public void update(int ms) {
-        super.update(ms);
-        if (sprite.getX() < -sprite.getFrameWidth()) {
-            respawn();
-        }
-    }
-
     private void respawn() {
         sprite.setY(Math.random() * 500);
         sprite.setX(2000 + Math.random() * 500);

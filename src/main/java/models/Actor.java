@@ -36,6 +36,8 @@ public abstract class Actor {
             return;
         }
         sprite.paint(g);
+
+        update();
     }
 
 
@@ -48,7 +50,7 @@ public abstract class Actor {
         }
     }
 
-    public void update(int ms) {
+    private void update() {
         if (!active) {
             return;
         }
