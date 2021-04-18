@@ -50,11 +50,11 @@ public class PlayerBird extends Actor implements Movable {
 
     @Override
     public void up() {
-
+        System.out.println("UP");
     }
 
     @Override
     public void down() {
-
+        System.out.println("DOWN");
     }
 }

@@ -37,14 +37,14 @@ public class Panel extends JPanel {
         keyListener.addBind(
                 new KeyBind(
                         KeyEvent.VK_UP,
-                        () -> System.out.println("UP")
+                        playerBird::up
                 )
         );
 
         keyListener.addBind(
                 new KeyBind(
                         KeyEvent.VK_DOWN,
-                        () -> System.out.println("DOWN")
+                        playerBird::down
                 )
         );
 
