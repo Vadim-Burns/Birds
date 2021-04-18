@@ -56,8 +56,8 @@ public class PlayerBird extends Actor implements Movable, UnExitable {
     }
 
     @Override
-    public void onIntersects(Actor act) {
-        damage(act.damage);
+    public void onIntersects() {
+        damage(super.damage);
     }
 
     @Override

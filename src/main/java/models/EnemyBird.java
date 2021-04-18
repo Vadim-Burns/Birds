@@ -53,14 +53,14 @@ public class EnemyBird extends Actor implements UnExitable {
     }
 
     @Override
-    public void onIntersects(Actor act) {
-        respawn();
-    }
-
-    @Override
     public void checkPosition() {
         if (sprite.getX() < 0) {
             respawn();
         }
+    }
+
+    @Override
+    public void onIntersects() {
+        respawn();
     }
 }

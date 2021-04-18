@@ -30,7 +30,10 @@ public class Panel extends JPanel {
     }
 
     private void processGame() {
-        playerBird.intersects(enemyBird);
+        if (playerBird.intersects(enemyBird)) {
+            playerBird.onIntersects();
+            enemyBird.onIntersects();
+        }
     }
 
     public KeyListener buildKeyListener() {

@@ -1,14 +1,15 @@
 package models;
 
+import interfaces.Intersectable;
 import textures.RectangularCollider;
 import textures.Sprite;
 
 import java.awt.*;
 
-public abstract class Actor {
+public abstract class Actor implements Intersectable {
 
     protected Sprite sprite;
-    protected RectangularCollider collider;
+    private RectangularCollider collider;
 
     protected boolean active = true;
     protected int hp = 100;
@@ -41,13 +42,9 @@ public abstract class Actor {
     }
 
 
-    public abstract void onIntersects(Actor act);
-
-    public final void intersects(Actor act) {
-        if (collider.intersects(act.collider) && active && act.active) {
-            onIntersects(act);
-            act.onIntersects(this);
-        }
+    @Override
+    public boolean intersects(Intersectable intersectable) {
+        return collider.intersects(intersectable.getCollider());
     }
 
     private void update() {
@@ -56,5 +53,10 @@ public abstract class Actor {
         }
 
         collider.update(sprite.getX(), sprite.getY());
+    }
+
+    @Override
+    public RectangularCollider getCollider() {
+        return collider;
     }
 }
