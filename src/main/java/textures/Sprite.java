@@ -5,28 +5,9 @@ import java.util.ArrayList;
 
 public class Sprite extends Texture {
 
-    protected double alpha = 0;
-    protected double speed = 150;
-
-    protected ArrayList<Point> frames = new ArrayList<Point>();
+    protected ArrayList<Point> frames = new ArrayList<>();
     protected int currentFrame = 0;
-    protected int elapsedTime = 0;
-    protected int frameTime = 50;
     protected int frameWidth = 100, frameHeight = 100;
-
-    protected boolean visible = true;
-
-    public void show() {
-        visible = true;
-    }
-
-    public void hide() {
-        visible = false;
-    }
-
-    public void setAlpha(double alpha) {
-        this.alpha = alpha;
-    }
 
     public Sprite(double x, double y, String filePath, Point p) {
         super(x, y, filePath);
@@ -49,10 +30,6 @@ public class Sprite extends Texture {
     @Override
     public void paint(Graphics g) {
         nextFrame();
-
-        if (!visible) {
-            return;
-        }
 
         int x_image1, y_image1, x_image2, y_image2;
         int x_canvas1, y_canvas1, x_canvas2, y_canvas2;

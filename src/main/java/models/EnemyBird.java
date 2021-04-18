@@ -2,7 +2,7 @@ package models;
 
 import java.awt.*;
 
-public class EnemyBird extends Bird {
+public class EnemyBird extends Actor {
 
     public EnemyBird(double x, double y) {
         super(
@@ -11,8 +11,8 @@ public class EnemyBird extends Bird {
                 EnemyBird.class.getClassLoader().getResource("enemy.png").getPath()
         );
 
-        s.setFrameWidth(110);
-        s.setFrameHeight(101);
+        sprite.setFrameWidth(110);
+        sprite.setFrameHeight(101);
 
         int frame = 0;
         for (int i = 0; i < 3; i++) {
@@ -20,7 +20,7 @@ public class EnemyBird extends Bird {
                 if (frame == 0 || frame == 14) {
                     continue;
                 }
-                s.addFrame(new Point(j * s.getFrameWidth(), i * s.getFrameHeight()));
+                sprite.addFrame(new Point(j * sprite.getFrameWidth(), i * sprite.getFrameHeight()));
             }
         }
 
@@ -30,15 +30,14 @@ public class EnemyBird extends Bird {
     @Override
     public void update(int ms) {
         super.update(ms);
-        if (s.getX() < -s.getFrameWidth()) {
+        if (sprite.getX() < -sprite.getFrameWidth()) {
             respawn();
         }
     }
 
     private void respawn() {
-        s.setY(Math.random() * 500);
-        s.setX(2000 + Math.random() * 500);
-        s.setAlpha(Math.PI);
+        sprite.setY(Math.random() * 500);
+        sprite.setX(2000 + Math.random() * 500);
     }
 
     @Override

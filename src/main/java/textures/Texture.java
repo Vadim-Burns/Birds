@@ -10,14 +10,6 @@ public class Texture {
     protected double x, y;
     protected BufferedImage image;
 
-    public double getX() {
-        return x;
-    }
-
-    public double getY() {
-        return y;
-    }
-
     public Texture(double x, double y, String fileName) {
         this.x = x;
         this.y = y;
@@ -30,6 +22,14 @@ public class Texture {
             System.out.println("Файл не загружен " + fileName);
             System.exit(0);
         }
+    }
+
+    public double getX() {
+        return x;
+    }
+
+    public double getY() {
+        return y;
     }
 
     public void paint(Graphics g) {
