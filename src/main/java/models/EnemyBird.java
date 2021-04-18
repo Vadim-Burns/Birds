@@ -1,8 +1,11 @@
 package models;
 
+import interfaces.UnExitable;
+import utils.EndlessThread;
+
 import java.awt.*;
 
-public class EnemyBird extends Actor {
+public class EnemyBird extends Actor implements UnExitable {
     private final int speed = 10;
 
     public EnemyBird(double x, double y) {
@@ -35,17 +38,13 @@ public class EnemyBird extends Actor {
     }
 
     private void startMovementThread() {
-        new Thread(() -> {
-            while (true) {
-                try {
+        new EndlessThread(
+                50,
+                () -> {
                     sprite.changePoint(sprite.getX() - speed, sprite.getY());
-                    Thread.sleep(50);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                    break;
+                    checkPosition();
                 }
-            }
-        }).start();
+        ).start();
     }
 
     @Override
@@ -64,5 +63,12 @@ public class EnemyBird extends Actor {
     @Override
     public void onIntersects(Actor act) {
         respawn();
+    }
+
+    @Override
+    public void checkPosition() {
+        if (sprite.getX() < 0) {
+            respawn();
+        }
     }
 }

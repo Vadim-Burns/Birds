@@ -1,10 +1,8 @@
-package models;
+package interfaces;
 
 public interface Movable {
 
     void up();
 
     void down();
-
-    void checkPosition();
 }

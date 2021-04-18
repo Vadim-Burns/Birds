@@ -1,8 +1,12 @@
 package models;
 
+import interfaces.Movable;
+import interfaces.UnExitable;
+import utils.EndlessThread;
+
 import java.awt.*;
 
-public class PlayerBird extends Actor implements Movable {
+public class PlayerBird extends Actor implements Movable, UnExitable {
 
     private final int speed = 10;
     private final int gravity = 5;
@@ -35,18 +39,13 @@ public class PlayerBird extends Actor implements Movable {
     }
 
     private void startGravityThread() {
-        new Thread(() -> {
-            while (true) {
-                try {
+        new EndlessThread(
+                50,
+                () -> {
                     sprite.changePoint(sprite.getX(), sprite.getY() + gravity);
                     checkPosition();
-                    Thread.sleep(50);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                    break;
                 }
-            }
-        }).start();
+        ).start();
     }
 
     @Override

@@ -1,5 +1,7 @@
 package ui;
 
+import utils.EndlessThread;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -20,18 +22,13 @@ public class Window extends JFrame {
     }
 
     private void startUIThread() {
-        new Thread(() -> {
-            while (true) {
-                try {
-                    Thread.sleep(tik);
+        new EndlessThread(
+                tik,
+                () -> {
                     repaint();
                     Toolkit.getDefaultToolkit().sync();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                    break;
                 }
-            }
-        }).start();
+        ).start();
     }
 
     private void initMetaInfo() {
