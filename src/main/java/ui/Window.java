@@ -3,15 +3,24 @@ package ui;
 import javax.swing.*;
 
 public class Window extends JFrame {
-
+    private final static int tik = 50;
     public Window() {
         initMetaInfo();
 
-        Panel p = new Panel();
-        add(p);
-        addKeyListener(p);
+        add(new Panel());
 
         revalidate();
+        new Thread(() -> {
+            while (true) {
+                try {
+                    Thread.sleep(tik);
+                    repaint();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                    break;
+                }
+            }
+        }).start();
     }
 
     private void initMetaInfo() {

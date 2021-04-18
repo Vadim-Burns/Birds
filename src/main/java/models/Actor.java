@@ -70,7 +70,6 @@ public abstract class Actor {
             return;
         }
 
-        s.update(ms);
         collider.update(s.getX(), s.getY());
     }
 }

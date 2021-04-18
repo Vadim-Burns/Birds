@@ -36,7 +36,6 @@ public class Sprite extends Texture {
 
     public void addFrame(Point p) {
         frames.add(p);
-
     }
 
     public void nextFrame() {
@@ -46,36 +45,10 @@ public class Sprite extends Texture {
         }
     }
 
-    private void updateFrames(int ms) {
-        // Обновление кадров
-        elapsedTime += ms;
-        if (elapsedTime >= frameTime) {
-            nextFrame();
-            elapsedTime = elapsedTime - frameTime;
-        }
-    }
-
-    private void updateXY(int ms) {
-        // Пересчет дивжения
-        double vx = speed * Math.cos(alpha);
-        double vy = speed * Math.sin(alpha);
-
-        double dx = vx * ms / 1000.0;
-        double dy = vy * ms / 1000.0;
-
-        x += dx;
-        y += dy;
-
-    }
-
-    public void update(int ms) {
-        updateFrames(ms);
-        updateXY(ms);
-    }
-
 
     @Override
     public void paint(Graphics g) {
+        nextFrame();
 
         if (!visible) {
             return;
