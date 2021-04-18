@@ -11,6 +11,12 @@ public class EnemyBird extends Actor {
                 EnemyBird.class.getClassLoader().getResource("enemy.png").getPath()
         );
 
+        initFrames();
+
+        respawn();
+    }
+
+    private void initFrames() {
         sprite.setFrameWidth(110);
         sprite.setFrameHeight(101);
 
@@ -23,8 +29,6 @@ public class EnemyBird extends Actor {
                 sprite.addFrame(new Point(j * sprite.getFrameWidth(), i * sprite.getFrameHeight()));
             }
         }
-
-        respawn();
     }
 
     @Override

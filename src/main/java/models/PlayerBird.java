@@ -4,7 +4,8 @@ import java.awt.*;
 
 public class PlayerBird extends Actor implements Movable {
 
-    private final int speed = 5;
+    private final int speed = 10;
+    private final int gravity = 5;
 
     public PlayerBird() {
         super(
@@ -13,6 +14,12 @@ public class PlayerBird extends Actor implements Movable {
                 PlayerBird.class.getClassLoader().getResource("player.png").getPath()
         );
 
+        initFrames();
+
+        startGravityThread();
+    }
+
+    private void initFrames() {
         sprite.setFrameWidth(110);
         sprite.setFrameHeight(101);
 
@@ -25,6 +32,20 @@ public class PlayerBird extends Actor implements Movable {
                 sprite.addFrame(new Point(j * sprite.getFrameWidth(), i * sprite.getFrameHeight()));
             }
         }
+    }
+
+    private void startGravityThread() {
+        new Thread(() -> {
+            while (true) {
+                try {
+                    sprite.changePoint(sprite.getX(), sprite.getY() + gravity);
+                    Thread.sleep(50);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                    break;
+                }
+            }
+        }).start();
     }
 
     @Override
