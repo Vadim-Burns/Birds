@@ -39,14 +39,6 @@ public abstract class Actor {
         collider = new RectangularCollider(x, y, 100, 100);
     }
 
-    public void show() {
-        s.show();
-    }
-
-    public void hide() {
-        s.hide();
-    }
-
     public void paint(Graphics g) {
         if (!active) {
             return;

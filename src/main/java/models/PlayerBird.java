@@ -38,12 +38,25 @@ public class PlayerBird extends Bird {
         }
     }
 
-    public PlayerBird(double x, double y) {
+    public PlayerBird() {
         super(
-                x,
-                y,
+                100,
+                100,
                 PlayerBird.class.getClassLoader().getResource("player.png").getPath()
         );
+
+        s.setFrameWidth(110);
+        s.setFrameHeight(101);
+
+        int frame = 0;
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 5; j++, frame++) {
+                if (frame == 0 || frame == 14) {
+                    continue;
+                }
+                s.addFrame(new Point(j * s.getFrameWidth(), i * s.getFrameHeight()));
+            }
+        }
 
         up();
     }
