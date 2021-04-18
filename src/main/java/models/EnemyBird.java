@@ -3,6 +3,7 @@ package models;
 import java.awt.*;
 
 public class EnemyBird extends Actor {
+    private final int speed = 10;
 
     public EnemyBird(double x, double y) {
         super(
@@ -14,6 +15,8 @@ public class EnemyBird extends Actor {
         initFrames();
 
         respawn();
+
+        startMovementThread();
     }
 
     private void initFrames() {
@@ -29,6 +32,20 @@ public class EnemyBird extends Actor {
                 sprite.addFrame(new Point(j * sprite.getFrameWidth(), i * sprite.getFrameHeight()));
             }
         }
+    }
+
+    private void startMovementThread() {
+        new Thread(() -> {
+            while (true) {
+                try {
+                    sprite.changePoint(sprite.getX() - speed, sprite.getY());
+                    Thread.sleep(50);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                    break;
+                }
+            }
+        }).start();
     }
 
     @Override

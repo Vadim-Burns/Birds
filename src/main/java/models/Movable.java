@@ -2,9 +2,9 @@ package models;
 
 public interface Movable {
 
-    public void up();
+    void up();
 
-    public void down();
+    void down();
 
-    public void checkPosition();
+    void checkPosition();
 }
