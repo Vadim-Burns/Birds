@@ -12,7 +12,7 @@ import java.awt.event.KeyListener;
 
 public class Panel extends JPanel {
     private final PlayerBird playerBird = new PlayerBird();
-    private final EnemyBird enemyBird = new EnemyBird(100, 100);
+    private final EnemyBird enemyBird = new EnemyBird();
 
     public Panel() {
         setFocusable(true);

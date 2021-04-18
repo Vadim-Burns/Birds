@@ -6,7 +6,7 @@ import utils.EndlessThread;
 
 import java.awt.*;
 
-public class PlayerBird extends Actor implements Movable, UnExitable {
+public class PlayerBird extends Bird implements Movable, UnExitable {
 
     private final int speed = 10;
     private final int gravity = 5;

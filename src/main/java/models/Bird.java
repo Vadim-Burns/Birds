@@ -1,12 +1,13 @@
 package models;
 
 import interfaces.Intersectable;
+import interfaces.Paintable;
 import textures.RectangularCollider;
 import textures.Sprite;
 
 import java.awt.*;
 
-public abstract class Actor implements Intersectable {
+public abstract class Bird implements Intersectable, Paintable {
 
     protected Sprite sprite;
     private RectangularCollider collider;
@@ -15,7 +16,7 @@ public abstract class Actor implements Intersectable {
     protected int hp = 100;
     protected int damage = 30;
 
-    Actor(double x, double y, String filePath) {
+    Bird(double x, double y, String filePath) {
         sprite = new Sprite(x, y, filePath, new Point(0, 0));
         collider = new RectangularCollider(x, y, 100, 100);
     }
@@ -32,6 +33,7 @@ public abstract class Actor implements Intersectable {
         active = false;
     }
 
+    @Override
     public void paint(Graphics g) {
         if (!active) {
             return;

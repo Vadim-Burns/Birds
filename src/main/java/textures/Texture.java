@@ -1,11 +1,13 @@
 package textures;
 
+import interfaces.Paintable;
+
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 
-public class Texture {
+public class Texture implements Paintable {
 
     protected double x, y;
     protected BufferedImage image;
@@ -32,6 +34,7 @@ public class Texture {
         return y;
     }
 
+    @Override
     public void paint(Graphics g) {
         g.drawImage(image, (int) x, (int) y, null);
     }

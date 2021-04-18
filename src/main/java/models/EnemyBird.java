@@ -5,13 +5,13 @@ import utils.EndlessThread;
 
 import java.awt.*;
 
-public class EnemyBird extends Actor implements UnExitable {
+public class EnemyBird extends Bird implements UnExitable {
     private final int speed = 10;
 
-    public EnemyBird(double x, double y) {
+    public EnemyBird() {
         super(
-                x,
-                y,
+                0,
+                0,
                 EnemyBird.class.getClassLoader().getResource("enemy.png").getPath()
         );
 
