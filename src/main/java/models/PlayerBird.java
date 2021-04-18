@@ -2,7 +2,7 @@ package models;
 
 import java.awt.*;
 
-public class PlayerBird extends Actor {
+public class PlayerBird extends Actor implements Movable {
 
     public PlayerBird() {
         super(
@@ -46,5 +46,15 @@ public class PlayerBird extends Actor {
     @Override
     public void onIntersects(Actor act) {
         damage(act.damage);
+    }
+
+    @Override
+    public void up() {
+
+    }
+
+    @Override
+    public void down() {
+
     }
 }

@@ -9,7 +9,10 @@ public class Window extends JFrame {
     public Window() {
         initMetaInfo();
 
-        add(new Panel());
+        Panel panel = new Panel();
+        add(panel);
+
+        addKeyListener(panel.buildKeyListener());
 
         revalidate();
 
