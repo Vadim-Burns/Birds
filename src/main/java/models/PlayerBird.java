@@ -39,6 +39,7 @@ public class PlayerBird extends Actor implements Movable {
             while (true) {
                 try {
                     sprite.changePoint(sprite.getX(), sprite.getY() + gravity);
+                    checkPosition();
                     Thread.sleep(50);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
@@ -56,17 +57,6 @@ public class PlayerBird extends Actor implements Movable {
     }
 
     @Override
-    public void update(int ms) {
-        super.update(ms);
-
-        if (sprite.getY() < 0) {
-            sprite.setY(0);
-        } else if (sprite.getY() > 700) {
-            sprite.setY(700);
-        }
-    }
-
-    @Override
     public void onIntersects(Actor act) {
         damage(act.damage);
     }
@@ -74,10 +64,21 @@ public class PlayerBird extends Actor implements Movable {
     @Override
     public void up() {
         sprite.changePoint(sprite.getX(), sprite.getY() - speed);
+        checkPosition();
     }
 
     @Override
     public void down() {
         sprite.changePoint(sprite.getX(), sprite.getY() + speed);
+        checkPosition();
+    }
+
+    @Override
+    public void checkPosition() {
+        if (sprite.getY() < 0) {
+            sprite.setY(0);
+        } else if (sprite.getY() > 700) {
+            sprite.setY(700);
+        }
     }
 }
