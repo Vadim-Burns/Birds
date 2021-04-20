@@ -1,22 +1,22 @@
 package ui;
 
-import models.EnemyBird;
-import models.KeyBind;
-import models.PlayerBird;
-import utils.KeyListenerImpl;
+import interfaces.PlayersManager;
+import managers.EnemiesManager;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 
 public class Panel extends JPanel {
-    private final PlayerBird playerBird = new PlayerBird();
-    private final EnemyBird enemyBird = new EnemyBird();
+    private final PlayersManager playersManager;
+    private final EnemiesManager enemiesManager;
 
-    public Panel() {
+    public Panel(PlayersManager playersManager, EnemiesManager enemiesManager) {
+
         setFocusable(true);
         setBackground(Color.BLACK);
+
+        this.playersManager = playersManager;
+        this.enemiesManager = enemiesManager;
     }
 
     @Override
@@ -25,33 +25,11 @@ public class Panel extends JPanel {
 
         processGame();
 
-        playerBird.paint(g);
-        enemyBird.paint(g);
+        playersManager.paint(g);
+        enemiesManager.paint(g);
     }
 
     private void processGame() {
-        if (playerBird.intersects(enemyBird)) {
-            playerBird.onIntersects();
-            enemyBird.onIntersects();
-        }
-    }
-
-    public KeyListener buildKeyListener() {
-        KeyListenerImpl keyListener = new KeyListenerImpl();
-        keyListener.addBind(
-                new KeyBind(
-                        KeyEvent.VK_UP,
-                        playerBird::up
-                )
-        );
-
-        keyListener.addBind(
-                new KeyBind(
-                        KeyEvent.VK_DOWN,
-                        playerBird::down
-                )
-        );
-
-        return keyListener;
+        playersManager.checkIntersections(enemiesManager.getBirds());
     }
 }

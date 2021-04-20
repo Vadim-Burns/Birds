@@ -1,17 +1,17 @@
 package utils;
 
+import interfaces.BirdKeyListener;
 import models.KeyBind;
 
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class KeyListenerImpl implements KeyListener {
+public class BirdKeyListenerImpl implements BirdKeyListener {
 
     private final List<KeyBind> binds = new ArrayList<>();
 
-    public KeyListenerImpl() {
+    public BirdKeyListenerImpl() {
     }
 
     @Override
@@ -32,6 +32,7 @@ public class KeyListenerImpl implements KeyListener {
     public void keyReleased(KeyEvent keyEvent) {
     }
 
+    @Override
     public void addBind(KeyBind keyBind) {
         binds.add(keyBind);
     }

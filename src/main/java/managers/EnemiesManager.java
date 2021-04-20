@@ -12,6 +12,16 @@ public class EnemiesManager implements BirdsManager<EnemyBird> {
     private final List<EnemyBird> birds = new ArrayList<>();
 
 
+    public EnemiesManager() {
+        birds.add(
+                new EnemyBird()
+        );
+
+        birds.add(
+                new EnemyBird()
+        );
+    }
+
     @Override
     public void addBird(EnemyBird bird) {
         birds.add(bird);
@@ -27,6 +37,11 @@ public class EnemiesManager implements BirdsManager<EnemyBird> {
                 }
             }
         }
+    }
+
+    @Override
+    public List<EnemyBird> getBirds() {
+        return birds;
     }
 
     @Override

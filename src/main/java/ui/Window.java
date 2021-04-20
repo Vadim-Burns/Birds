@@ -1,5 +1,8 @@
 package ui;
 
+import interfaces.PlayersManager;
+import managers.EnemiesManager;
+import managers.PlayersManagerImpl;
 import utils.EndlessThread;
 
 import javax.swing.*;
@@ -11,10 +14,17 @@ public class Window extends JFrame {
     public Window() {
         initMetaInfo();
 
-        Panel panel = new Panel();
+        PlayersManager playersManager = new PlayersManagerImpl();
+        EnemiesManager enemiesManager = new EnemiesManager();
+
+        Panel panel = new Panel(
+                playersManager,
+                enemiesManager
+        );
         add(panel);
 
-        addKeyListener(panel.buildKeyListener());
+        addKeyListener(playersManager.generateArrowKeyListener());
+        addKeyListener(playersManager.generateWasdKeyListener());
 
         revalidate();
 
