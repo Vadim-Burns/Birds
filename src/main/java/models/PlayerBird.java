@@ -9,7 +9,9 @@ import java.awt.*;
 
 public class PlayerBird extends Bird implements Movable, UnExitable {
 
-    public PlayerBird() {
+    private final Color color;
+
+    public PlayerBird(Color color) {
         super(
                 100,
                 100,
@@ -17,6 +19,8 @@ public class PlayerBird extends Bird implements Movable, UnExitable {
         );
 
         initFrames();
+
+        this.color = color;
 
         startGravityThread();
     }
@@ -50,7 +54,7 @@ public class PlayerBird extends Bird implements Movable, UnExitable {
     @Override
     public void paint(Graphics g) {
         super.paint(g);
-        g.setColor(Color.GREEN);
+        g.setColor(color);
         g.fillRect((int) sprite.getX(), (int) sprite.getY() + sprite.getFrameHeight(), (int) (hp / 100.0 * sprite.getFrameWidth()), 3);
     }
 
