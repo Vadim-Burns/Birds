@@ -1,12 +1,12 @@
 package models;
 
+import config.ConfigVars;
 import interfaces.UnExitable;
 import utils.EndlessThread;
 
 import java.awt.*;
 
 public class EnemyBird extends Bird implements UnExitable {
-    private final int speed = 10;
 
     public EnemyBird() {
         super(
@@ -39,9 +39,9 @@ public class EnemyBird extends Bird implements UnExitable {
 
     private void startMovementThread() {
         new EndlessThread(
-                50,
+                ConfigVars.tikRate,
                 () -> {
-                    sprite.changePoint(sprite.getX() - speed, sprite.getY());
+                    sprite.changePoint(sprite.getX() - ConfigVars.enemySpeed, sprite.getY());
                     checkPosition();
                 }
         ).start();

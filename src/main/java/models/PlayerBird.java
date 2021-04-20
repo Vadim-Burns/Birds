@@ -1,5 +1,6 @@
 package models;
 
+import config.ConfigVars;
 import interfaces.Movable;
 import interfaces.UnExitable;
 import utils.EndlessThread;
@@ -7,9 +8,6 @@ import utils.EndlessThread;
 import java.awt.*;
 
 public class PlayerBird extends Bird implements Movable, UnExitable {
-
-    private final int speed = 10;
-    private final int gravity = 5;
 
     public PlayerBird() {
         super(
@@ -40,14 +38,15 @@ public class PlayerBird extends Bird implements Movable, UnExitable {
 
     private void startGravityThread() {
         new EndlessThread(
-                50,
+                ConfigVars.tikRate,
                 () -> {
-                    sprite.changePoint(sprite.getX(), sprite.getY() + gravity);
+                    sprite.changePoint(sprite.getX(), sprite.getY() + ConfigVars.playerGravity);
                     checkPosition();
                 }
         ).start();
     }
 
+    // TODO: разные цвета для разных игроков
     @Override
     public void paint(Graphics g) {
         super.paint(g);
@@ -62,13 +61,13 @@ public class PlayerBird extends Bird implements Movable, UnExitable {
 
     @Override
     public void up() {
-        sprite.changePoint(sprite.getX(), sprite.getY() - speed);
+        sprite.changePoint(sprite.getX(), sprite.getY() - ConfigVars.playerSpeed);
         checkPosition();
     }
 
     @Override
     public void down() {
-        sprite.changePoint(sprite.getX(), sprite.getY() + speed);
+        sprite.changePoint(sprite.getX(), sprite.getY() + ConfigVars.playerSpeed);
         checkPosition();
     }
 

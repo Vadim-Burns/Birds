@@ -102,7 +102,7 @@ public class PlayersManagerImpl implements PlayersManager {
             return birdKeyListener;
         } else {
             System.out.println("Not enough birds!");
-            System.out.println("It must be one bird at least for arrow listener");
+            System.out.println("It must be two birds at least for wasd listener");
             return null;
         }
     }

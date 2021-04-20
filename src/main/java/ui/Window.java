@@ -1,5 +1,6 @@
 package ui;
 
+import config.ConfigVars;
 import interfaces.PlayersManager;
 import managers.EnemiesManager;
 import managers.PlayersManagerImpl;
@@ -9,7 +10,6 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Window extends JFrame {
-    private final static int tik = 50;
 
     public Window() {
         initMetaInfo();
@@ -33,7 +33,7 @@ public class Window extends JFrame {
 
     private void startUIThread() {
         new EndlessThread(
-                tik,
+                ConfigVars.tikRate,
                 () -> {
                     repaint();
                     Toolkit.getDefaultToolkit().sync();

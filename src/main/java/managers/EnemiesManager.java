@@ -1,5 +1,6 @@
 package managers;
 
+import config.ConfigVars;
 import interfaces.BirdsManager;
 import models.Bird;
 import models.EnemyBird;
@@ -13,13 +14,11 @@ public class EnemiesManager implements BirdsManager<EnemyBird> {
 
 
     public EnemiesManager() {
-        birds.add(
-                new EnemyBird()
-        );
-
-        birds.add(
-                new EnemyBird()
-        );
+        for (int i = 0; i < ConfigVars.enemiesCount; i++) {
+            birds.add(
+                    new EnemyBird()
+            );
+        }
     }
 
     @Override
