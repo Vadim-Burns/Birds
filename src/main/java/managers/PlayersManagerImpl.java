@@ -39,12 +39,12 @@ public class PlayersManagerImpl implements PlayersManager {
     }
 
     @Override
-    public void checkIntersections(List<? extends Intersectable> objects) {
+    public void checkIntersections(List<? extends Intersectable> intersectables) {
         for (PlayerBird playerBird : this.birds) {
-            for (Intersectable object : objects) {
-                if (playerBird.intersects(object)) {
+            for (Intersectable intersectable : intersectables) {
+                if (playerBird.intersects(intersectable)) {
                     playerBird.onIntersects();
-                    object.onIntersects();
+                    intersectable.onIntersects();
                 }
             }
         }

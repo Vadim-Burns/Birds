@@ -27,12 +27,12 @@ public class EnemiesManager implements BirdsManager<EnemyBird> {
     }
 
     @Override
-    public void checkIntersections(List<? extends Intersectable> objects) {
+    public void checkIntersections(List<? extends Intersectable> intersectables) {
         for (EnemyBird enemyBird : this.birds) {
-            for (Intersectable object : objects) {
-                if (enemyBird.intersects(object)) {
+            for (Intersectable intersectable : intersectables) {
+                if (enemyBird.intersects(intersectable)) {
                     enemyBird.onIntersects();
-                    object.onIntersects();
+                    intersectable.onIntersects();
                 }
             }
         }
