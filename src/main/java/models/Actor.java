@@ -14,7 +14,7 @@ public abstract class Actor implements Intersectable, Paintable {
 
     protected boolean active = true;
 
-    Actor(double x, double y, String filePath) {
+    public Actor(double x, double y, String filePath) {
         sprite = new Sprite(x, y, filePath, new Point(0, 0));
         collider = new RectangularCollider(x, y, 100, 100);
     }

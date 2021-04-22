@@ -1,6 +1,6 @@
 package interfaces;
 
-import models.PlayerBird;
+import models.birds.PlayerBird;
 
 public interface PlayersManager extends BirdsManager<PlayerBird> {
 

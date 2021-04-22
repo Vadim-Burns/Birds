@@ -4,7 +4,7 @@ import interfaces.BirdKeyListener;
 import interfaces.PlayersManager;
 import models.Actor;
 import models.KeyBind;
-import models.PlayerBird;
+import models.birds.PlayerBird;
 import utils.BirdKeyListenerImpl;
 
 import java.awt.*;

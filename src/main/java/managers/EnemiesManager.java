@@ -3,7 +3,7 @@ package managers;
 import config.ConfigVars;
 import interfaces.BirdsManager;
 import models.Actor;
-import models.EnemyBird;
+import models.birds.EnemyBird;
 
 import java.awt.*;
 import java.util.ArrayList;

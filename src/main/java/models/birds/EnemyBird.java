@@ -1,4 +1,4 @@
-package models;
+package models.birds;
 
 import config.ConfigVars;
 import interfaces.UnExitable;
