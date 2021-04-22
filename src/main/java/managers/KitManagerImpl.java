@@ -1,7 +1,6 @@
 package managers;
 
 import config.ConfigVars;
-import interfaces.Intersectable;
 import interfaces.KitManager;
 import models.Kit;
 
@@ -17,10 +16,6 @@ public class KitManagerImpl implements KitManager {
         for (int i = 0; i < ConfigVars.kitsCount; i++) {
             kits.add(new Kit());
         }
-    }
-
-    @Override
-    public void checkIntersections(List<? extends Intersectable> intersectables) {
     }
 
     @Override

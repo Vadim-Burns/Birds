@@ -39,10 +39,10 @@ public class ConfigVars {
     public static final int kitsCount = 1;
 
     // Время появления аптечек в мили секундах
-    public static final int kitDelay = 1000;
+    public static final int kitDelay = 5000;
 
     // Скорость движения аптечки по X
-    public static final int kitSpeed = 10;
+    public static final int kitSpeed = 100;
 
     // Количество восполняемых hp
     public static final int kitHp = 500;
