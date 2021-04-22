@@ -3,6 +3,7 @@ package ui;
 import config.ConfigVars;
 import interfaces.PlayersManager;
 import managers.EnemiesManager;
+import managers.KitManager;
 import managers.PlayersManagerImpl;
 import utils.EndlessThread;
 
@@ -16,10 +17,12 @@ public class Window extends JFrame {
 
         PlayersManager playersManager = new PlayersManagerImpl();
         EnemiesManager enemiesManager = new EnemiesManager();
+        KitManager kitManager = new KitManager();
 
         Panel panel = new Panel(
                 playersManager,
-                enemiesManager
+                enemiesManager,
+                kitManager
         );
         add(panel);
 

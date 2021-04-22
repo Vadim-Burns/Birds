@@ -35,6 +35,7 @@ public abstract class Actor implements Intersectable, Paintable {
         return collider.intersects(intersectable.getCollider());
     }
 
+    // TODO: Убрать прямые запросы к sprite с проверкой на каждый тик и сделать отдельный метод
     private void update() {
         if (!active) {
             return;

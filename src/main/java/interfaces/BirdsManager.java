@@ -1,12 +1,10 @@
 package interfaces;
 
-import models.Actor;
+import models.birds.Bird;
 
 import java.util.List;
 
-public interface BirdsManager<T extends Actor> extends Manager {
-
-    void addBird(T bird);
+public interface BirdsManager<T extends Bird> extends Manager {
 
     List<T> getBirds();
 }

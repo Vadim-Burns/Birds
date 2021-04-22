@@ -31,4 +31,16 @@ public class ConfigVars {
 
     // Количество здоровья игрока
     public static final int playerHp = 1000;
+
+    /**
+     * Kit settings
+     */
+    // Количество аптечек
+    public static final int kitsCount = 1;
+
+    // Время появления аптечек в мили секундах
+    public static final int kitDelay = 1000;
+
+    // Скорость движения аптечки по X
+    public static final int kitSpeed = 10;
 }
