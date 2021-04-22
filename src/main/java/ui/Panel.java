@@ -2,7 +2,7 @@ package ui;
 
 import interfaces.PlayersManager;
 import managers.EnemiesManager;
-import managers.KitManager;
+import managers.KitManagerImpl;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,9 +10,9 @@ import java.awt.*;
 public class Panel extends JPanel {
     private final PlayersManager playersManager;
     private final EnemiesManager enemiesManager;
-    private final KitManager kitManager;
+    private final KitManagerImpl kitManager;
 
-    public Panel(PlayersManager playersManager, EnemiesManager enemiesManager, KitManager kitManager) {
+    public Panel(PlayersManager playersManager, EnemiesManager enemiesManager, KitManagerImpl kitManager) {
 
         setFocusable(true);
         setBackground(Color.BLACK);
@@ -35,5 +35,6 @@ public class Panel extends JPanel {
 
     private void processGame() {
         playersManager.checkIntersections(enemiesManager.getBirds());
+        playersManager.checkIntersections(kitManager.getKits());
     }
 }

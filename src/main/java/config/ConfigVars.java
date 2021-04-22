@@ -15,7 +15,7 @@ public class ConfigVars {
     public static final int enemySpeed = 10;
 
     // Количество вражеских птиц
-    public static final int enemiesCount = 50;
+    public static final int enemiesCount = 2;
 
     /**
      * Player settings
@@ -27,7 +27,7 @@ public class ConfigVars {
     public static final int playerGravity = 5;
 
     // Урон при столкновении для игрока
-    public static final int playerIntersectDamage = 30;
+    public static final int playerIntersectDamage = 500;
 
     // Количество здоровья игрока
     public static final int playerHp = 1000;
@@ -43,4 +43,7 @@ public class ConfigVars {
 
     // Скорость движения аптечки по X
     public static final int kitSpeed = 10;
+
+    // Количество восполняемых hp
+    public static final int kitHp = 500;
 }

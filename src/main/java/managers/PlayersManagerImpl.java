@@ -1,9 +1,11 @@
 package managers;
 
+import config.ConfigVars;
 import interfaces.BirdKeyListener;
 import interfaces.Intersectable;
 import interfaces.PlayersManager;
 import models.KeyBind;
+import models.Kit;
 import models.birds.PlayerBird;
 import utils.BirdKeyListenerImpl;
 
@@ -37,7 +39,11 @@ public class PlayersManagerImpl implements PlayersManager {
         for (PlayerBird playerBird : this.birds) {
             for (Intersectable intersectable : intersectables) {
                 if (playerBird.intersects(intersectable)) {
-                    playerBird.onIntersects();
+                    if (intersectable instanceof Kit) {
+                        playerBird.cure(ConfigVars.kitHp);
+                    } else {
+                        playerBird.onIntersects();
+                    }
                     intersectable.onIntersects();
                 }
             }

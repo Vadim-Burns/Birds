@@ -6,4 +6,5 @@ public interface Manager extends Paintable {
 
     void checkIntersections(List<? extends Intersectable> intersectables);
 
+
 }

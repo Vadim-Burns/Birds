@@ -1,6 +1,7 @@
 package models.birds;
 
 import config.ConfigVars;
+import interfaces.Curable;
 import interfaces.Damagable;
 import interfaces.Movable;
 import interfaces.UnExitable;
@@ -8,7 +9,7 @@ import utils.EndlessThread;
 
 import java.awt.*;
 
-public class PlayerBird extends Bird implements Movable, UnExitable, Damagable {
+public class PlayerBird extends Bird implements Movable, UnExitable, Damagable, Curable {
 
     private final Color color;
 
@@ -99,5 +100,13 @@ public class PlayerBird extends Bird implements Movable, UnExitable, Damagable {
     public void die() {
         hp = 0;
         active = false;
+    }
+
+    @Override
+    public void cure(int c) {
+        hp += c;
+        if (hp > ConfigVars.playerHp) {
+            hp = ConfigVars.playerHp;
+        }
     }
 }

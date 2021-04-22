@@ -2,18 +2,18 @@ package managers;
 
 import config.ConfigVars;
 import interfaces.Intersectable;
-import interfaces.Manager;
+import interfaces.KitManager;
 import models.Kit;
 
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class KitManager implements Manager {
+public class KitManagerImpl implements KitManager {
 
     private final List<Kit> kits = new ArrayList<>();
 
-    public KitManager() {
+    public KitManagerImpl() {
         for (int i = 0; i < ConfigVars.kitsCount; i++) {
             kits.add(new Kit());
         }
@@ -21,7 +21,6 @@ public class KitManager implements Manager {
 
     @Override
     public void checkIntersections(List<? extends Intersectable> intersectables) {
-
     }
 
     @Override
@@ -29,5 +28,10 @@ public class KitManager implements Manager {
         for (Kit kit : kits) {
             kit.paint(g);
         }
+    }
+
+    @Override
+    public List<Kit> getKits() {
+        return kits;
     }
 }

@@ -39,7 +39,13 @@ public class Kit extends Actor implements Intersectable, UnExitable {
     @Override
     public void checkPosition() {
         if (sprite.getX() < 0) {
-            respawn();
+            try {
+                Thread.sleep(ConfigVars.kitDelay);
+
+                respawn();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
     }
 }
