@@ -16,7 +16,9 @@ public class Texture implements Paintable {
         this.x = x;
         this.y = y;
 
-        File f = new File(fileName);
+        File f = new File(
+                Texture.class.getClassLoader().getResource(fileName).getPath()
+        );
 
         try {
             image = ImageIO.read(f);

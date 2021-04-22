@@ -8,7 +8,7 @@ public interface BirdsManager<T extends Actor> extends Paintable {
 
     void addBird(T bird);
 
-    void checkIntersections(List<? extends Actor> birds);
+    void checkIntersections(List<? extends Intersectable> birds);
 
     List<T> getBirds();
 }

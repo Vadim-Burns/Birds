@@ -15,7 +15,7 @@ public class ConfigVars {
     public static final int enemySpeed = 10;
 
     // Количество вражеских птиц
-    public static final int enemiesCount = 50;
+    public static final int enemiesCount = 0;
 
     /**
      * Player settings

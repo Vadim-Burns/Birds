@@ -2,6 +2,7 @@ package ui;
 
 import interfaces.PlayersManager;
 import managers.EnemiesManager;
+import models.Kit;
 
 import javax.swing.*;
 import java.awt.*;
@@ -9,6 +10,7 @@ import java.awt.*;
 public class Panel extends JPanel {
     private final PlayersManager playersManager;
     private final EnemiesManager enemiesManager;
+    private final Kit kit;
 
     public Panel(PlayersManager playersManager, EnemiesManager enemiesManager) {
 
@@ -17,6 +19,7 @@ public class Panel extends JPanel {
 
         this.playersManager = playersManager;
         this.enemiesManager = enemiesManager;
+        this.kit = new Kit();
     }
 
     @Override
@@ -27,6 +30,8 @@ public class Panel extends JPanel {
 
         playersManager.paint(g);
         enemiesManager.paint(g);
+
+        kit.paint(g);
     }
 
     private void processGame() {

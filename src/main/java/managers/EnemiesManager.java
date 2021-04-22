@@ -2,7 +2,7 @@ package managers;
 
 import config.ConfigVars;
 import interfaces.BirdsManager;
-import models.Actor;
+import interfaces.Intersectable;
 import models.birds.EnemyBird;
 
 import java.awt.*;
@@ -27,12 +27,12 @@ public class EnemiesManager implements BirdsManager<EnemyBird> {
     }
 
     @Override
-    public void checkIntersections(List<? extends Actor> birds) {
+    public void checkIntersections(List<? extends Intersectable> objects) {
         for (EnemyBird enemyBird : this.birds) {
-            for (Actor bird : birds) {
-                if (enemyBird.intersects(bird)) {
+            for (Intersectable object : objects) {
+                if (enemyBird.intersects(object)) {
                     enemyBird.onIntersects();
-                    bird.onIntersects();
+                    object.onIntersects();
                 }
             }
         }

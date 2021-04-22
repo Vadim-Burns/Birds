@@ -9,7 +9,7 @@ public abstract class Bird extends Actor implements UnExitable {
         super(
                 x,
                 y,
-                Bird.class.getClassLoader().getResource(filePath).getPath()
+                filePath
         );
     }
 }
