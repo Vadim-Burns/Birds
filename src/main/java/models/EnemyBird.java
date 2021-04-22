@@ -12,7 +12,7 @@ public class EnemyBird extends Bird implements UnExitable {
         super(
                 0,
                 0,
-                EnemyBird.class.getClassLoader().getResource("enemy.png").getPath()
+                "enemy.png"
         );
 
         initFrames();

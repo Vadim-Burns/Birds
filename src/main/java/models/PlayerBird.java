@@ -1,26 +1,30 @@
 package models;
 
 import config.ConfigVars;
+import interfaces.Damagable;
 import interfaces.Movable;
 import interfaces.UnExitable;
 import utils.EndlessThread;
 
 import java.awt.*;
 
-public class PlayerBird extends Bird implements Movable, UnExitable {
+public class PlayerBird extends Bird implements Movable, UnExitable, Damagable {
 
     private final Color color;
+
+    private int hp;
 
     public PlayerBird(Color color) {
         super(
                 100,
                 100,
-                PlayerBird.class.getClassLoader().getResource("player.png").getPath()
+                "player.png"
         );
 
         initFrames();
 
         this.color = color;
+        this.hp = ConfigVars.playerHp;
 
         startGravityThread();
     }
@@ -50,7 +54,6 @@ public class PlayerBird extends Bird implements Movable, UnExitable {
         ).start();
     }
 
-    // TODO: разные цвета для разных игроков
     @Override
     public void paint(Graphics g) {
         super.paint(g);
@@ -60,7 +63,7 @@ public class PlayerBird extends Bird implements Movable, UnExitable {
 
     @Override
     public void onIntersects() {
-        damage(super.damage);
+        damage(ConfigVars.playerIntersectDamage);
     }
 
     @Override
@@ -82,5 +85,19 @@ public class PlayerBird extends Bird implements Movable, UnExitable {
         } else if (sprite.getY() > 700) {
             sprite.setY(700);
         }
+    }
+
+    @Override
+    public void damage(int d) {
+        hp -= d;
+        if (hp <= 0) {
+            die();
+        }
+    }
+
+    @Override
+    public void die() {
+        hp = 0;
+        active = false;
     }
 }

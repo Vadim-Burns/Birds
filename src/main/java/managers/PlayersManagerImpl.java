@@ -2,7 +2,7 @@ package managers;
 
 import interfaces.BirdKeyListener;
 import interfaces.PlayersManager;
-import models.Bird;
+import models.Actor;
 import models.KeyBind;
 import models.PlayerBird;
 import utils.BirdKeyListenerImpl;
@@ -39,9 +39,9 @@ public class PlayersManagerImpl implements PlayersManager {
     }
 
     @Override
-    public void checkIntersections(List<? extends Bird> birds) {
+    public void checkIntersections(List<? extends Actor> birds) {
         for (PlayerBird playerBird : this.birds) {
-            for (Bird bird : birds) {
+            for (Actor bird : birds) {
                 if (playerBird.intersects(bird)) {
                     playerBird.onIntersects();
                     bird.onIntersects();

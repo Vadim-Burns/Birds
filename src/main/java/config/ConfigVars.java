@@ -25,4 +25,10 @@ public class ConfigVars {
 
     // Сила гравитации игрока по Y
     public static final int playerGravity = 5;
+
+    // Урон при столкновении для игрока
+    public static final int playerIntersectDamage = 30;
+
+    // Количество здоровья игрока
+    public static final int playerHp = 1000;
 }
