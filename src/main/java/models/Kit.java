@@ -10,7 +10,7 @@ public class Kit extends Actor implements Intersectable, UnExitable {
     public Kit() {
         super(100, 100, "kit.png");
 
-        show();
+        respawn();
 
         startMovementThread();
     }
@@ -32,18 +32,6 @@ public class Kit extends Actor implements Intersectable, UnExitable {
     }
 
     private void respawn() {
-        new Thread(() -> {
-            try {
-                Thread.sleep(ConfigVars.kitDelay);
-
-                show();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }).start();
-    }
-
-    private void show() {
         sprite.setY(Math.random() * 500);
         sprite.setX(2000 + Math.random() * 500);
     }
