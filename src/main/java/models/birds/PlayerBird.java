@@ -129,12 +129,11 @@ public class PlayerBird extends Bird implements Movable, UnExitable, Damagable, 
         }
     }
 
-    public boolean isDead() {
-        return !active;
-    }
-
     @Override
     public void shoot() {
-        ShootingManagerImpl.getDefaultShootingManager().shoot(getX(), getY());
+        ShootingManagerImpl.getDefaultShootingManager().shoot(
+                getX() + getFrameWidth() + ConfigVars.shootMargin,
+                getY() + getFrameHeight() / 2
+        );
     }
 }

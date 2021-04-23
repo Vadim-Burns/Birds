@@ -43,6 +43,8 @@ public class Panel extends JPanel {
     }
 
     private void processGame() {
+        enemiesManager.checkIntersections(shootingManager.getShoots());
+
         playersManager.checkIntersections(enemiesManager.getBirds());
         playersManager.checkIntersections(kitManager.getKits());
     }

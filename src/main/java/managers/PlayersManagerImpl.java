@@ -45,7 +45,7 @@ public class PlayersManagerImpl implements PlayersManager {
                         playerBird.cure(ConfigVars.kitHp);
                     } else {
                         playerBird.onIntersects();
-                        if (playerBird.isDead()) deletedBirds.add(playerBird);
+                        if (!playerBird.isActive()) deletedBirds.add(playerBird);
                     }
                     intersectable.onIntersects();
                 }

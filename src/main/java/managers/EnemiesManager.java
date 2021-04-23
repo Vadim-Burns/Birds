@@ -29,8 +29,10 @@ public class EnemiesManager implements BirdsManager<EnemyBird> {
     public void checkIntersections(List<? extends Intersectable> intersectables) {
         for (EnemyBird bird : birds) {
             for (Intersectable intersectable : intersectables) {
-                bird.onIntersects();
-                intersectable.onIntersects();
+                if (bird.intersects(intersectable)) {
+                    bird.onIntersects();
+                    intersectable.onIntersects();
+                }
             }
         }
     }

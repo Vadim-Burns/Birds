@@ -19,9 +19,15 @@ public class ShootingManagerImpl implements ShootingManager {
 
     @Override
     public void paint(Graphics g) {
+        List<Shoot> deletedShoots = new ArrayList<>();
+
         for (Shoot shoot : shoots) {
             shoot.paint(g);
+
+            if (!shoot.isActive()) deletedShoots.add(shoot);
         }
+
+        shoots.removeAll(deletedShoots);
     }
 
     @Override
@@ -29,7 +35,6 @@ public class ShootingManagerImpl implements ShootingManager {
         return shoots;
     }
 
-    // TODO: Удаление старых выстрелов
     @Override
     public void shoot(double x, double y) {
         shoots.add(

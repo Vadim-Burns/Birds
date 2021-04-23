@@ -63,4 +63,8 @@ public abstract class Actor implements Intersectable, Paintable {
     protected int getFrameHeight() {
         return sprite.getFrameHeight();
     }
+
+    public boolean isActive() {
+        return active;
+    }
 }

@@ -52,4 +52,7 @@ public class ConfigVars {
      */
     // Скорость полета снаряда
     public static final int shootSpeed = 20;
+
+    // Расстояние на котором появляется снаряд от игрока
+    public static final int shootMargin = 3;
 }
