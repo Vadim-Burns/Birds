@@ -21,9 +21,13 @@ public class LevelLabel extends JLabel {
     private void startUpdatingLevelThread() {
         new EndlessThread(
                 ConfigVars.levelTime,
-                () -> {
-                    setText("Level: " + ++currentLevel);
-                }
+                this::processLevelUpdate
         ).start();
+    }
+
+    private void processLevelUpdate() {
+        setText("Level: " + ++currentLevel);
+
+        ConfigVars.enemySpeed += ConfigVars.deltaEnemySpeed;
     }
 }

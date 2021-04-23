@@ -12,10 +12,13 @@ public class ConfigVars {
      * Enemy settings
      */
     // Скорость вражеских птиц по X
-    public static final int enemySpeed = 10;
+    public static int enemySpeed = 10;
 
     // Количество вражеских птиц
     public static final int enemiesCount = 10;
+
+    // Увеличение скорости врага за уровень
+    public static final int deltaEnemySpeed = 5;
 
     /**
      * Player settings
