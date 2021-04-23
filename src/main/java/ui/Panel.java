@@ -1,8 +1,9 @@
 package ui;
 
-import interfaces.PlayersManager;
+import interfaces.managers.KitsManager;
+import interfaces.managers.PlayersManager;
+import interfaces.managers.ShootingManager;
 import managers.EnemiesManager;
-import managers.KitsManagerImpl;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,9 +11,15 @@ import java.awt.*;
 public class Panel extends JPanel {
     private final PlayersManager playersManager;
     private final EnemiesManager enemiesManager;
-    private final KitsManagerImpl kitManager;
+    private final KitsManager kitManager;
+    private final ShootingManager shootingManager;
 
-    public Panel(PlayersManager playersManager, EnemiesManager enemiesManager, KitsManagerImpl kitManager) {
+    public Panel(
+            PlayersManager playersManager,
+            EnemiesManager enemiesManager,
+            KitsManager kitManager,
+            ShootingManager shootingManager
+    ) {
 
         setFocusable(true);
         setBackground(Color.BLACK);
@@ -20,6 +27,7 @@ public class Panel extends JPanel {
         this.playersManager = playersManager;
         this.enemiesManager = enemiesManager;
         this.kitManager = kitManager;
+        this.shootingManager = shootingManager;
     }
 
     @Override
@@ -31,6 +39,7 @@ public class Panel extends JPanel {
         playersManager.paint(g);
         enemiesManager.paint(g);
         kitManager.paint(g);
+        shootingManager.paint(g);
     }
 
     private void processGame() {

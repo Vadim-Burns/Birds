@@ -1,7 +1,7 @@
 package managers;
 
 import config.ConfigVars;
-import interfaces.KitsManager;
+import interfaces.managers.KitsManager;
 import models.Kit;
 
 import java.awt.*;

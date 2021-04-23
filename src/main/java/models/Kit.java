@@ -21,7 +21,11 @@ public class Kit extends Actor implements Intersectable, UnExitable {
         new EndlessThread(
                 ConfigVars.tikRate,
                 () -> {
-                    changePoint(getX() - ConfigVars.kitSpeed, getY());
+                    changePoint(
+                            getX() - ConfigVars.kitSpeed,
+                            getY()
+                    );
+
                     checkPosition();
                 }
         ).start();

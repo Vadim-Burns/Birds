@@ -1,15 +1,11 @@
-package interfaces;
+package interfaces.managers;
 
+import interfaces.BirdKeyListener;
 import models.birds.PlayerBird;
-
-import java.util.List;
 
 public interface PlayersManager extends BirdsManager<PlayerBird> {
 
     BirdKeyListener generateArrowKeyListener();
 
     BirdKeyListener generateWasdKeyListener();
-
-    void checkIntersections(List<? extends Intersectable> intersectables);
-
 }

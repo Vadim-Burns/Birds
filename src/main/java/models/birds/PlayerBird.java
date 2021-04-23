@@ -1,15 +1,13 @@
 package models.birds;
 
 import config.ConfigVars;
-import interfaces.Curable;
-import interfaces.Damagable;
-import interfaces.Movable;
-import interfaces.UnExitable;
+import interfaces.*;
+import managers.ShootingManagerImpl;
 import utils.EndlessThread;
 
 import java.awt.*;
 
-public class PlayerBird extends Bird implements Movable, UnExitable, Damagable, Curable {
+public class PlayerBird extends Bird implements Movable, UnExitable, Damagable, Curable, Shootable {
 
     private final Color color;
 
@@ -64,6 +62,10 @@ public class PlayerBird extends Bird implements Movable, UnExitable, Damagable, 
 
         super.paint(g);
 
+        drawHealthBar(g);
+    }
+
+    private void drawHealthBar(Graphics g) {
         g.setColor(color);
         g.fillRect(
                 (int) getX(),
@@ -129,5 +131,10 @@ public class PlayerBird extends Bird implements Movable, UnExitable, Damagable, 
 
     public boolean isDead() {
         return !active;
+    }
+
+    @Override
+    public void shoot() {
+        ShootingManagerImpl.getDefaultShootingManager().shoot(getX(), getY());
     }
 }

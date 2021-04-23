@@ -1,4 +1,4 @@
-package interfaces;
+package interfaces.managers;
 
 import models.Kit;
 

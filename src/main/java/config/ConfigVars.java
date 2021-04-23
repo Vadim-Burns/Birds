@@ -46,4 +46,10 @@ public class ConfigVars {
 
     // Количество восполняемых hp
     public static final int kitHp = 500;
+
+    /**
+     * Shooting settings
+     */
+    // Скорость полета снаряда
+    public static final int shootSpeed = 20;
 }

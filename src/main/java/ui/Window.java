@@ -1,10 +1,12 @@
 package ui;
 
 import config.ConfigVars;
-import interfaces.PlayersManager;
+import interfaces.managers.KitsManager;
+import interfaces.managers.PlayersManager;
 import managers.EnemiesManager;
 import managers.KitsManagerImpl;
 import managers.PlayersManagerImpl;
+import managers.ShootingManagerImpl;
 import utils.EndlessThread;
 
 import javax.swing.*;
@@ -17,12 +19,13 @@ public class Window extends JFrame {
 
         PlayersManager playersManager = new PlayersManagerImpl();
         EnemiesManager enemiesManager = new EnemiesManager();
-        KitsManagerImpl kitManager = new KitsManagerImpl();
+        KitsManager kitManager = new KitsManagerImpl();
 
         Panel panel = new Panel(
                 playersManager,
                 enemiesManager,
-                kitManager
+                kitManager,
+                ShootingManagerImpl.getDefaultShootingManager()
         );
         add(panel);
 

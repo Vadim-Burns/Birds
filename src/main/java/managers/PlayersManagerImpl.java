@@ -3,7 +3,7 @@ package managers;
 import config.ConfigVars;
 import interfaces.BirdKeyListener;
 import interfaces.Intersectable;
-import interfaces.PlayersManager;
+import interfaces.managers.PlayersManager;
 import models.KeyBind;
 import models.Kit;
 import models.birds.PlayerBird;
@@ -82,6 +82,13 @@ public class PlayersManagerImpl implements PlayersManager {
                     )
             );
 
+            birdKeyListener.addBind(
+                    new KeyBind(
+                            KeyEvent.VK_SPACE,
+                            birds.get(0)::shoot
+                    )
+            );
+
             return birdKeyListener;
         } else {
             System.out.println("Not enough birds!");
@@ -105,6 +112,13 @@ public class PlayersManagerImpl implements PlayersManager {
                     new KeyBind(
                             KeyEvent.VK_S,
                             birds.get(1)::down
+                    )
+            );
+
+            birdKeyListener.addBind(
+                    new KeyBind(
+                            KeyEvent.VK_ENTER,
+                            birds.get(1)::shoot
                     )
             );
 
