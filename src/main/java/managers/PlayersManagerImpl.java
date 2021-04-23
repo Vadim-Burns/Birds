@@ -36,6 +36,8 @@ public class PlayersManagerImpl implements PlayersManager {
 
     @Override
     public void checkIntersections(List<? extends Intersectable> intersectables) {
+        List<PlayerBird> deletedBirds = new ArrayList<>();
+
         for (PlayerBird playerBird : this.birds) {
             for (Intersectable intersectable : intersectables) {
                 if (playerBird.intersects(intersectable)) {
@@ -43,11 +45,18 @@ public class PlayersManagerImpl implements PlayersManager {
                         playerBird.cure(ConfigVars.kitHp);
                     } else {
                         playerBird.onIntersects();
+                        if (playerBird.isDead()) deletedBirds.add(playerBird);
                     }
                     intersectable.onIntersects();
                 }
             }
         }
+
+        deleteBirds(deletedBirds);
+    }
+
+    private void deleteBirds(List<PlayerBird> deletedBirds) {
+        birds.removeAll(deletedBirds);
     }
 
     @Override

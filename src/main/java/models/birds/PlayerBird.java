@@ -60,7 +60,10 @@ public class PlayerBird extends Bird implements Movable, UnExitable, Damagable, 
 
     @Override
     public void paint(Graphics g) {
+        if (!active) return;
+
         super.paint(g);
+
         g.setColor(color);
         g.fillRect(
                 (int) getX(),
@@ -122,5 +125,9 @@ public class PlayerBird extends Bird implements Movable, UnExitable, Damagable, 
         if (hp > ConfigVars.playerHp) {
             hp = ConfigVars.playerHp;
         }
+    }
+
+    public boolean isDead() {
+        return !active;
     }
 }
