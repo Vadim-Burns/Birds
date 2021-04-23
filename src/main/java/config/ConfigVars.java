@@ -55,4 +55,13 @@ public class ConfigVars {
 
     // Расстояние на котором появляется снаряд от игрока
     public static final int shootMargin = 3;
+
+    /**
+     * Level label info
+     */
+    // Размер шрифта информационной панели
+    public static final int levelFontSize = 40;
+
+    // Время прохождения одного уровня в мили секундах
+    public static final int levelTime = 10000;
 }

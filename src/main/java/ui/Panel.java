@@ -28,6 +28,8 @@ public class Panel extends JPanel {
         this.enemiesManager = enemiesManager;
         this.kitManager = kitManager;
         this.shootingManager = shootingManager;
+
+        add(new LevelLabel());
     }
 
     @Override
