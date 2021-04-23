@@ -23,16 +23,19 @@ public class EnemyBird extends Bird implements UnExitable {
     }
 
     private void initFrames() {
-        sprite.setFrameWidth(110);
-        sprite.setFrameHeight(101);
-
         int frame = 0;
         for (int i = 0; i < 3; i++) {
             for (int j = 4; j >= 0; j--, frame++) {
                 if (frame == 0 || frame == 14) {
                     continue;
                 }
-                sprite.addFrame(new Point(j * sprite.getFrameWidth(), i * sprite.getFrameHeight()));
+
+                addFrame(
+                        new Point(
+                                j * getFrameWidth(),
+                                i * getFrameHeight()
+                        )
+                );
             }
         }
     }
@@ -41,20 +44,22 @@ public class EnemyBird extends Bird implements UnExitable {
         new EndlessThread(
                 ConfigVars.tikRate,
                 () -> {
-                    sprite.changePoint(sprite.getX() - ConfigVars.enemySpeed, sprite.getY());
+                    changePoint(getX() - ConfigVars.enemySpeed, getY());
                     checkPosition();
                 }
         ).start();
     }
 
     private void respawn() {
-        sprite.setY(Math.random() * 500);
-        sprite.setX(2000 + Math.random() * 500);
+        changePoint(
+                2000 + Math.random() * 500,
+                Math.random() * 500
+        );
     }
 
     @Override
     public void checkPosition() {
-        if (sprite.getX() < 0) {
+        if (getX() < 0) {
             respawn();
         }
     }

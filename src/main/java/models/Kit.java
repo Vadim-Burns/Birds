@@ -5,6 +5,8 @@ import interfaces.Intersectable;
 import interfaces.UnExitable;
 import utils.EndlessThread;
 
+import java.awt.*;
+
 public class Kit extends Actor implements Intersectable, UnExitable {
 
     public Kit() {
@@ -19,10 +21,15 @@ public class Kit extends Actor implements Intersectable, UnExitable {
         new EndlessThread(
                 ConfigVars.tikRate,
                 () -> {
-                    sprite.changePoint(sprite.getX() - ConfigVars.kitSpeed, sprite.getY());
+                    changePoint(getX() - ConfigVars.kitSpeed, getY());
                     checkPosition();
                 }
         ).start();
+    }
+
+    @Override
+    public void paint(Graphics g) {
+        super.paint(g);
     }
 
     // Добавление hp при пересечении с птицей игрока, нужно подумать
@@ -33,13 +40,16 @@ public class Kit extends Actor implements Intersectable, UnExitable {
 
     private void respawn() {
         active = true;
-        sprite.setY(Math.random() * 500);
-        sprite.setX(2000 + Math.random() * 500);
+
+        changePoint(
+                2000 + Math.random() * 500,
+                Math.random() * 500
+        );
     }
 
     @Override
     public void checkPosition() {
-        if (sprite.getX() < 0) {
+        if (getX() < 0) {
             try {
                 active = false;
 

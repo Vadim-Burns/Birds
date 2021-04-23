@@ -2,7 +2,7 @@ package ui;
 
 import interfaces.PlayersManager;
 import managers.EnemiesManager;
-import managers.KitManagerImpl;
+import managers.KitsManagerImpl;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,9 +10,9 @@ import java.awt.*;
 public class Panel extends JPanel {
     private final PlayersManager playersManager;
     private final EnemiesManager enemiesManager;
-    private final KitManagerImpl kitManager;
+    private final KitsManagerImpl kitManager;
 
-    public Panel(PlayersManager playersManager, EnemiesManager enemiesManager, KitManagerImpl kitManager) {
+    public Panel(PlayersManager playersManager, EnemiesManager enemiesManager, KitsManagerImpl kitManager) {
 
         setFocusable(true);
         setBackground(Color.BLACK);

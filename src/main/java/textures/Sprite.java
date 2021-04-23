@@ -7,7 +7,7 @@ public class Sprite extends Texture {
 
     protected ArrayList<Point> frames = new ArrayList<>();
     protected int currentFrame = 0;
-    protected int frameWidth = 100, frameHeight = 100;
+    protected int frameWidth = 110, frameHeight = 101;
 
     public Sprite(double x, double y, String filePath, Point p) {
         super(x, y, filePath);

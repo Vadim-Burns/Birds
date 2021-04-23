@@ -9,7 +9,7 @@ import java.awt.*;
 
 public abstract class Actor implements Intersectable, Paintable {
 
-    protected Sprite sprite;
+    private Sprite sprite;
     private RectangularCollider collider;
 
     protected boolean active = true;
@@ -24,9 +24,8 @@ public abstract class Actor implements Intersectable, Paintable {
         if (!active) {
             return;
         }
-        sprite.paint(g);
 
-        update();
+        sprite.paint(g);
     }
 
 
@@ -35,17 +34,33 @@ public abstract class Actor implements Intersectable, Paintable {
         return collider.intersects(intersectable.getCollider());
     }
 
-    // TODO: Убрать прямые запросы к sprite с проверкой на каждый тик и сделать отдельный метод
-    private void update() {
-        if (!active) {
-            return;
-        }
-
-        collider.update(sprite.getX(), sprite.getY());
-    }
-
     @Override
     public RectangularCollider getCollider() {
         return collider;
+    }
+
+    protected void changePoint(double x, double y) {
+        sprite.changePoint(x, y);
+        collider.update(x, y);
+    }
+
+    protected double getX() {
+        return sprite.getX();
+    }
+
+    protected double getY() {
+        return sprite.getY();
+    }
+
+    protected void addFrame(Point p) {
+        sprite.addFrame(p);
+    }
+
+    protected int getFrameWidth() {
+        return sprite.getFrameWidth();
+    }
+
+    protected int getFrameHeight() {
+        return sprite.getFrameHeight();
     }
 }

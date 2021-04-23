@@ -1,18 +1,18 @@
 package managers;
 
 import config.ConfigVars;
-import interfaces.KitManager;
+import interfaces.KitsManager;
 import models.Kit;
 
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class KitManagerImpl implements KitManager {
+public class KitsManagerImpl implements KitsManager {
 
     private final List<Kit> kits = new ArrayList<>();
 
-    public KitManagerImpl() {
+    public KitsManagerImpl() {
         for (int i = 0; i < ConfigVars.kitsCount; i++) {
             kits.add(new Kit());
         }

@@ -31,16 +31,19 @@ public class PlayerBird extends Bird implements Movable, UnExitable, Damagable, 
     }
 
     private void initFrames() {
-        sprite.setFrameWidth(110);
-        sprite.setFrameHeight(101);
-
         int frame = 0;
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 5; j++, frame++) {
                 if (frame == 0 || frame == 14) {
                     continue;
                 }
-                sprite.addFrame(new Point(j * sprite.getFrameWidth(), i * sprite.getFrameHeight()));
+
+                addFrame(
+                        new Point(
+                                j * getFrameWidth(),
+                                i * getFrameHeight()
+                        )
+                );
             }
         }
     }
@@ -49,7 +52,7 @@ public class PlayerBird extends Bird implements Movable, UnExitable, Damagable, 
         new EndlessThread(
                 ConfigVars.tikRate,
                 () -> {
-                    sprite.changePoint(sprite.getX(), sprite.getY() + ConfigVars.playerGravity);
+                    changePoint(getX(), getY() + ConfigVars.playerGravity);
                     checkPosition();
                 }
         ).start();
@@ -59,7 +62,12 @@ public class PlayerBird extends Bird implements Movable, UnExitable, Damagable, 
     public void paint(Graphics g) {
         super.paint(g);
         g.setColor(color);
-        g.fillRect((int) sprite.getX(), (int) sprite.getY() + sprite.getFrameHeight(), (int) (hp / 100.0 * sprite.getFrameWidth()), 3);
+        g.fillRect(
+                (int) getX(),
+                (int) getY() + getFrameHeight(),
+                (int) (hp / 100.0 * getFrameWidth()),
+                3
+        );
     }
 
     @Override
@@ -69,22 +77,28 @@ public class PlayerBird extends Bird implements Movable, UnExitable, Damagable, 
 
     @Override
     public void up() {
-        sprite.changePoint(sprite.getX(), sprite.getY() - ConfigVars.playerSpeed);
+        changePoint(getX(), getY() - ConfigVars.playerSpeed);
         checkPosition();
     }
 
     @Override
     public void down() {
-        sprite.changePoint(sprite.getX(), sprite.getY() + ConfigVars.playerSpeed);
+        changePoint(getX(), getY() + ConfigVars.playerSpeed);
         checkPosition();
     }
 
     @Override
     public void checkPosition() {
-        if (sprite.getY() < 0) {
-            sprite.setY(0);
-        } else if (sprite.getY() > 700) {
-            sprite.setY(700);
+        if (getY() < 0) {
+            changePoint(
+                    getX(),
+                    0
+            );
+        } else if (getY() > 700) {
+            changePoint(
+                    getX(),
+                    700
+            );
         }
     }
 
