@@ -7,14 +7,15 @@ import ui.InfoPanel;
 import utils.EndlessThread;
 
 import java.awt.*;
+import java.util.Date;
 
 public class PlayerBird extends Bird implements Movable, UnExitable, Damagable, Curable, Shootable, Hitable {
 
     private final Color color;
+    private final int playerNumber;
 
     private int hp;
-
-    private final int playerNumber;
+    private Date lastShootTime;
 
     public PlayerBird(int playerNumber, Color color) {
         super(
@@ -135,13 +136,21 @@ public class PlayerBird extends Bird implements Movable, UnExitable, Damagable, 
 
     @Override
     public void shoot() {
-        if (active) {
+        if (active && isShootAllowed()) {
             ShootingManagerImpl.getDefaultShootingManager().shoot(
                     getX() + getFrameWidth() + ConfigVars.shootMargin,
                     getY() + getFrameHeight() / 2,
                     this
             );
+
+            lastShootTime = new Date();
         }
+    }
+
+    private boolean isShootAllowed() {
+        if (lastShootTime == null) return true;
+        if (new Date().getTime() - lastShootTime.getTime() >= ConfigVars.playerShootDelay) return true;
+        return false;
     }
 
     @Override

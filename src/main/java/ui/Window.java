@@ -16,8 +16,7 @@ public class Window extends JFrame {
 
     public Window() {
         initMetaInfo();
-
-
+        
         PlayersManager playersManager = new PlayersManagerImpl();
         EnemiesManager enemiesManager = new EnemiesManager();
         KitsManager kitManager = new KitsManagerImpl();

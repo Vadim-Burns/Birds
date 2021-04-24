@@ -35,6 +35,9 @@ public class ConfigVars {
     // Количество здоровья игрока
     public static final int playerHp = 1000;
 
+    // Минимальная задержка между выстрелами игрока в мили секундах
+    public static final int playerShootDelay = 500;
+
     /**
      * Kit settings
      */
