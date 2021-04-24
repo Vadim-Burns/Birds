@@ -5,6 +5,7 @@ import interfaces.*;
 import managers.ShootingManagerImpl;
 import ui.InfoPanel;
 import utils.EndlessThread;
+import utils.Sound;
 
 import java.awt.*;
 import java.util.Date;
@@ -16,6 +17,7 @@ public class PlayerBird extends Bird implements Movable, UnExitable, Damagable, 
 
     private int hp;
     private Date lastShootTime;
+    private Date lastJumpSound;
 
     public PlayerBird(int playerNumber, Color color) {
         super(
@@ -89,6 +91,14 @@ public class PlayerBird extends Bird implements Movable, UnExitable, Damagable, 
     public void up() {
         changePoint(getX(), getY() - ConfigVars.playerSpeed);
         checkPosition();
+        playJumpSound();
+    }
+
+    private void playJumpSound() {
+        if (lastJumpSound == null || new Date().getTime() - lastJumpSound.getTime() >= ConfigVars.playerJumpSoundDelay) {
+            Sound.playJumpSound();
+            lastJumpSound = new Date();
+        }
     }
 
     @Override

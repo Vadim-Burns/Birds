@@ -8,6 +8,9 @@ public class ConfigVars {
     // Период между перерисовкой приложения в мили секундах
     public static final int tikRate = 50;
 
+    // Включен ли звук
+    public static final boolean isSoundEnabled = true;
+
     /**
      * Enemy settings
      */
@@ -37,6 +40,9 @@ public class ConfigVars {
 
     // Минимальная задержка между выстрелами игрока в мили секундах
     public static final int playerShootDelay = 500;
+
+    // Задержка проигрывания звука прыжка между прыжками(чтобы звуки прыжков не накладывались друг на друга) в мили секундах
+    public static final int playerJumpSoundDelay = 500;
 
     /**
      * Kit settings

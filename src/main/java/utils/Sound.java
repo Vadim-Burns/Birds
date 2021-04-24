@@ -1,27 +1,28 @@
 package utils;
 
+import config.ConfigVars;
+
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import java.io.File;
 
 public class Sound {
-	private static boolean soundEnabled = false;
-
 	private static synchronized void playSound(final String fileName) {
-		if (soundEnabled) {
+		if (ConfigVars.isSoundEnabled) {
 			new Thread(() -> {
 				try {
 					Clip clip = AudioSystem.getClip();
-					File f = new File(fileName);
-					System.out.println(f.getAbsolutePath());
+					File f = new File(
+							Sound.class.getClassLoader().getResource(fileName).getPath()
+					);
 					AudioInputStream inputStream = AudioSystem.getAudioInputStream(f);
 
 					clip.open(inputStream);
 					clip.start();
 
 				} catch (Exception e) {
-					System.err.println(e.getMessage());
+					e.printStackTrace();
 				}
 			}).start();
 		}
