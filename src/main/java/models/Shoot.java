@@ -29,7 +29,8 @@ public class Shoot extends Actor implements Intersectable, UnExitable {
                     );
 
                     checkPosition();
-                }
+                },
+                false
         );
     }
 
