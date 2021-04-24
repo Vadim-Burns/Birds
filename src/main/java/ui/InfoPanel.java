@@ -21,7 +21,7 @@ public class InfoPanel extends JLabel {
     private InfoPanel() {
         super();
 
-        setForeground(Color.WHITE);
+        setForeground(Color.BLACK);
         setFont(new Font("Calibri", Font.BOLD, ConfigVars.levelFontSize));
 
         setText("Level: " + currentLevel + " Player 1: " + player1Points + " Player 2: " + player2Points);

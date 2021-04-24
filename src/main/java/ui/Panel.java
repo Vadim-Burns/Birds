@@ -14,6 +14,8 @@ public class Panel extends JPanel {
     private final KitsManager kitManager;
     private final ShootingManager shootingManager;
 
+    private final Image background;
+
     public Panel(
             PlayersManager playersManager,
             EnemiesManager enemiesManager,
@@ -22,12 +24,17 @@ public class Panel extends JPanel {
     ) {
 
         setFocusable(true);
-        setBackground(Color.BLACK);
 
         this.playersManager = playersManager;
         this.enemiesManager = enemiesManager;
         this.kitManager = kitManager;
         this.shootingManager = shootingManager;
+
+        this.background = Toolkit
+                .getDefaultToolkit()
+                .getImage(
+                        Window.class.getClassLoader().getResource("background.png")
+                );
 
         add(InfoPanel.getDefaultInfoPanel());
     }
@@ -36,12 +43,20 @@ public class Panel extends JPanel {
     public void paint(Graphics g) {
         super.paint(g);
 
+        g.drawImage(
+                background,
+                0, 0,
+                getWidth(), getHeight(),
+                this
+        );
+
         processGame();
 
         playersManager.paint(g);
         enemiesManager.paint(g);
         kitManager.paint(g);
         shootingManager.paint(g);
+        InfoPanel.getDefaultInfoPanel().paint(g);
     }
 
     private void processGame() {
