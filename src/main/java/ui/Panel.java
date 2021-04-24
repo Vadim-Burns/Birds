@@ -29,7 +29,7 @@ public class Panel extends JPanel {
         this.kitManager = kitManager;
         this.shootingManager = shootingManager;
 
-        add(new LevelLabel());
+        add(InfoPanel.getDefaultInfoPanel());
     }
 
     @Override

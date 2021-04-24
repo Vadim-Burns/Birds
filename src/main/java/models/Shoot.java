@@ -1,15 +1,19 @@
 package models;
 
 import config.ConfigVars;
+import interfaces.Hitable;
 import interfaces.Intersectable;
 import interfaces.UnExitable;
 import utils.EndlessThread;
 
 public class Shoot extends Actor implements Intersectable, UnExitable {
     private final Thread movementThread;
+    private final Hitable hitable;
 
-    public Shoot(double x, double y) {
+    public Shoot(double x, double y, Hitable hitable) {
         super(x, y, "shoot.png");
+
+        this.hitable = hitable;
 
         movementThread = startMovementThread();
         movementThread.start();
@@ -36,6 +40,8 @@ public class Shoot extends Actor implements Intersectable, UnExitable {
 
     @Override
     public void onIntersects() {
+        hitable.onHit();
+
         destroy();
     }
 

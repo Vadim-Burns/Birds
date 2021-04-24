@@ -3,17 +3,20 @@ package models.birds;
 import config.ConfigVars;
 import interfaces.*;
 import managers.ShootingManagerImpl;
+import ui.InfoPanel;
 import utils.EndlessThread;
 
 import java.awt.*;
 
-public class PlayerBird extends Bird implements Movable, UnExitable, Damagable, Curable, Shootable {
+public class PlayerBird extends Bird implements Movable, UnExitable, Damagable, Curable, Shootable, Hitable {
 
     private final Color color;
 
     private int hp;
 
-    public PlayerBird(Color color) {
+    private final int playerNumber;
+
+    public PlayerBird(int playerNumber, Color color) {
         super(
                 100,
                 100,
@@ -23,6 +26,7 @@ public class PlayerBird extends Bird implements Movable, UnExitable, Damagable, 
         initFrames();
 
         this.color = color;
+        this.playerNumber = playerNumber;
         this.hp = ConfigVars.playerHp;
 
         startGravityThread();
@@ -131,9 +135,17 @@ public class PlayerBird extends Bird implements Movable, UnExitable, Damagable, 
 
     @Override
     public void shoot() {
-        ShootingManagerImpl.getDefaultShootingManager().shoot(
-                getX() + getFrameWidth() + ConfigVars.shootMargin,
-                getY() + getFrameHeight() / 2
-        );
+        if (active) {
+            ShootingManagerImpl.getDefaultShootingManager().shoot(
+                    getX() + getFrameWidth() + ConfigVars.shootMargin,
+                    getY() + getFrameHeight() / 2,
+                    this
+            );
+        }
+    }
+
+    @Override
+    public void onHit() {
+        InfoPanel.getDefaultInfoPanel().addPoints(playerNumber);
     }
 }

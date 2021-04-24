@@ -19,11 +19,11 @@ public class PlayersManagerImpl implements PlayersManager {
 
     public PlayersManagerImpl() {
         birds.add(
-                new PlayerBird(Color.GREEN)
+                new PlayerBird(1, Color.GREEN)
         );
 
         birds.add(
-                new PlayerBird(Color.BLUE)
+                new PlayerBird(2, Color.BLUE)
         );
     }
 

@@ -1,5 +1,6 @@
 package managers;
 
+import interfaces.Hitable;
 import interfaces.managers.ShootingManager;
 import models.Shoot;
 
@@ -36,11 +37,12 @@ public class ShootingManagerImpl implements ShootingManager {
     }
 
     @Override
-    public void shoot(double x, double y) {
+    public void shoot(double x, double y, Hitable hitable) {
         shoots.add(
                 new Shoot(
                         x,
-                        y
+                        y,
+                        hitable
                 )
         );
     }

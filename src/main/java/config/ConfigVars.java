@@ -63,8 +63,11 @@ public class ConfigVars {
      * Level label info
      */
     // Размер шрифта информационной панели
-    public static final int levelFontSize = 40;
+    public static final int levelFontSize = 20;
 
     // Время прохождения одного уровня в мили секундах
     public static final int levelTime = 10000;
+
+    // Количество очков за попадание по вражеской птице
+    public static final int pointsForEnemy = 1;
 }
