@@ -14,6 +14,9 @@ public class Shoot extends Actor implements Intersectable, UnExitable {
     public Shoot(double x, double y, Hitable hitable) {
         super(x, y, "shoot.png");
 
+        setFrameHeight(24);
+        setFrameWidth(23);
+
         this.hitable = hitable;
 
         movementThread = startMovementThread();
