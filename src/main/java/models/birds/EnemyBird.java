@@ -1,6 +1,7 @@
 package models.birds;
 
 import config.ConfigVars;
+import config.CurrentWindowSettings;
 import interfaces.UnExitable;
 import utils.EndlessThread;
 
@@ -53,7 +54,7 @@ public class EnemyBird extends Bird implements UnExitable {
     private void respawn() {
         changePoint(
                 2000 + Math.random() * 500,
-                Math.random() * 500
+                Math.random() * (CurrentWindowSettings.height - getFrameHeight() - 10)
         );
     }
 

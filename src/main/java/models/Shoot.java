@@ -1,6 +1,7 @@
 package models;
 
 import config.ConfigVars;
+import config.CurrentWindowSettings;
 import interfaces.Hitable;
 import interfaces.Intersectable;
 import interfaces.UnExitable;
@@ -48,7 +49,7 @@ public class Shoot extends Actor implements Intersectable, UnExitable {
 
     @Override
     public void checkPosition() {
-        if (getX() > 2500) {
+        if (getX() > CurrentWindowSettings.width) {
             destroy();
         }
     }

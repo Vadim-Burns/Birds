@@ -1,6 +1,7 @@
 package models.birds;
 
 import config.ConfigVars;
+import config.CurrentWindowSettings;
 import interfaces.*;
 import managers.ShootingManagerImpl;
 import ui.InfoPanel;
@@ -114,10 +115,10 @@ public class PlayerBird extends Bird implements Movable, UnExitable, Damagable, 
                     getX(),
                     0
             );
-        } else if (getY() > 700) {
+        } else if (getY() > CurrentWindowSettings.height - getFrameHeight() - 10) {
             changePoint(
                     getX(),
-                    700
+                    CurrentWindowSettings.height - getFrameHeight() - 10
             );
         }
     }

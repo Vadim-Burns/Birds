@@ -1,6 +1,7 @@
 package models;
 
 import config.ConfigVars;
+import config.CurrentWindowSettings;
 import interfaces.Intersectable;
 import interfaces.UnExitable;
 import utils.EndlessThread;
@@ -47,7 +48,7 @@ public class Kit extends Actor implements Intersectable, UnExitable {
 
         changePoint(
                 2000 + Math.random() * 500,
-                Math.random() * 500
+                Math.random() * (CurrentWindowSettings.height - getFrameHeight() - 10)
         );
     }
 

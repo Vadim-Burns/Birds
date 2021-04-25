@@ -2,23 +2,17 @@ package managers;
 
 import config.ConfigVars;
 import interfaces.Intersectable;
-import interfaces.managers.BirdsManager;
+import interfaces.managers.EnemiesManager;
 import models.birds.EnemyBird;
 
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class EnemiesManager implements BirdsManager<EnemyBird> {
+public class EnemiesManagerImpl implements EnemiesManager {
     private final List<EnemyBird> birds = new ArrayList<>();
 
-    public EnemiesManager() {
-        for (int i = 0; i < ConfigVars.enemiesCount; i++) {
-            birds.add(
-                    new EnemyBird()
-            );
-        }
-    }
+    private boolean spawned = false;
 
     @Override
     public List<EnemyBird> getBirds() {
@@ -41,6 +35,19 @@ public class EnemiesManager implements BirdsManager<EnemyBird> {
     public void paint(Graphics g) {
         for (EnemyBird bird : birds) {
             bird.paint(g);
+        }
+    }
+
+    @Override
+    public void spawn() {
+        if (!spawned) {
+            for (int i = 0; i < ConfigVars.enemiesCount; i++) {
+                birds.add(
+                        new EnemyBird()
+                );
+            }
+
+            spawned = true;
         }
     }
 }

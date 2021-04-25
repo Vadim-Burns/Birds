@@ -48,7 +48,7 @@ public class ConfigVars {
      * Kit settings
      */
     // Количество аптечек
-    public static int kitsCount = 1;
+    public static int kitsCount = 50;
 
     // Время появления аптечек в мили секундах
     public static final int kitDelay = 5000;

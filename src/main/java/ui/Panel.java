@@ -1,9 +1,10 @@
 package ui;
 
+import config.CurrentWindowSettings;
+import interfaces.managers.EnemiesManager;
 import interfaces.managers.KitsManager;
 import interfaces.managers.PlayersManager;
 import interfaces.managers.ShootingManager;
-import managers.EnemiesManager;
 
 import javax.swing.*;
 import java.awt.*;
@@ -42,6 +43,12 @@ public class Panel extends JPanel {
     @Override
     public void paint(Graphics g) {
         super.paint(g);
+
+        CurrentWindowSettings.width = getWidth();
+        CurrentWindowSettings.height = getHeight();
+
+        enemiesManager.spawn();
+        kitManager.spawn();
 
         g.drawImage(
                 background,
