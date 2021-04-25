@@ -6,6 +6,7 @@ import interfaces.Intersectable;
 import interfaces.managers.PlayersManager;
 import models.KeyBind;
 import models.Kit;
+import models.birds.EnemyBird;
 import models.birds.PlayerBird;
 import utils.BirdKeyListenerImpl;
 
@@ -14,12 +15,18 @@ import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Менеджер для управления птицами игроков
+ */
 public class PlayersManagerImpl implements PlayersManager {
     private final List<PlayerBird> birds = new ArrayList<>();
 
+    /**
+     * Внутри конструктора создаются 2 птицы для двух игроков
+     */
     public PlayersManagerImpl() {
         birds.add(
-                new PlayerBird(1, Color.GREEN)
+                new PlayerBird(1, Color.RED)
         );
 
         birds.add(
@@ -27,6 +34,9 @@ public class PlayersManagerImpl implements PlayersManager {
         );
     }
 
+    /**
+     * Отрисовка всех птиц игроков
+     */
     @Override
     public void paint(Graphics g) {
         for (PlayerBird bird : birds) {
@@ -34,24 +44,43 @@ public class PlayersManagerImpl implements PlayersManager {
         }
     }
 
+    /**
+     * Проверка всех птиц игроков на столкновения с вражескими птицами или с аптечками.
+     * Погибшие птицы будут удалены из менеджера и с поля.
+     */
     @Override
     public void checkIntersections(List<? extends Intersectable> intersectables) {
+        // Список погибших птиц
         List<PlayerBird> deletedBirds = new ArrayList<>();
 
         for (PlayerBird playerBird : this.birds) {
             for (Intersectable intersectable : intersectables) {
                 if (playerBird.intersects(intersectable)) {
+
+                    // Если встретившийся объект это аптечка, то мы увеличиваем здоровье птицы
                     if (intersectable instanceof Kit) {
                         playerBird.cure(ConfigVars.kitHp);
-                    } else {
-                        playerBird.onIntersects();
-                        if (!playerBird.isActive()) deletedBirds.add(playerBird);
+                        intersectable.onIntersects();
+
+                        continue;
                     }
-                    intersectable.onIntersects();
+
+                    // В случае вражеской птицы наносим урон игроку и проверяем жив ли он после этого
+                    if (intersectable instanceof EnemyBird) {
+                        playerBird.onIntersects();
+                        intersectable.onIntersects();
+
+                        // Проверка на живость игрока
+                        if (!playerBird.isActive()) deletedBirds.add(playerBird);
+
+                        continue;
+                    }
+
                 }
             }
         }
 
+        // Удаляем мертвых птиц
         deleteBirds(deletedBirds);
     }
 
@@ -59,11 +88,17 @@ public class PlayersManagerImpl implements PlayersManager {
         birds.removeAll(deletedBirds);
     }
 
+    /**
+     * Получение списка всех птиц игроков
+     */
     @Override
     public List<PlayerBird> getBirds() {
         return birds;
     }
 
+    /**
+     * Создание KeyListener клавиатуры для управления первой птицей через стрелочки и пробел для стрельбы.
+     */
     @Override
     public BirdKeyListener generateArrowKeyListener() {
         if (!birds.isEmpty()) {
@@ -97,6 +132,9 @@ public class PlayersManagerImpl implements PlayersManager {
         }
     }
 
+    /**
+     * Создание KeyListener клавиатуры для управления второй птицей через WASD и ENTER для стрельбы.
+     */
     @Override
     public BirdKeyListener generateWasdKeyListener() {
         if (birds.size() > 1) {

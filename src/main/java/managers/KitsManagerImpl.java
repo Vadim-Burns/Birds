@@ -9,11 +9,19 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Менеджер для управления всеми аптечками
+ */
 public class KitsManagerImpl implements KitsManager, Spawnable {
 
     private final List<Kit> kits = new ArrayList<>();
     private boolean spawned = false;
 
+    /**
+     * Отрисовка всех аптечек
+     *
+     * @param g
+     */
     @Override
     public void paint(Graphics g) {
         for (Kit kit : kits) {
@@ -21,11 +29,20 @@ public class KitsManagerImpl implements KitsManager, Spawnable {
         }
     }
 
+    /**
+     * Получение всех аптечек
+     *
+     * @return
+     */
     @Override
     public List<Kit> getKits() {
         return kits;
     }
 
+    /**
+     * Генерация аптечек.
+     * Метод может быть вызван только один раз.
+     */
     @Override
     public void spawn() {
         if (!spawned) {

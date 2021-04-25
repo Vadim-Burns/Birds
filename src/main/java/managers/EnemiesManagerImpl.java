@@ -9,16 +9,25 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Менеджер для управления всеми вражескими птицами
+ */
 public class EnemiesManagerImpl implements EnemiesManager {
     private final List<EnemyBird> birds = new ArrayList<>();
 
     private boolean spawned = false;
 
+    /**
+     * Получение списка вражеских птиц
+     */
     @Override
     public List<EnemyBird> getBirds() {
         return birds;
     }
 
+    /**
+     * Проверка на столкновения
+     */
     @Override
     public void checkIntersections(List<? extends Intersectable> intersectables) {
         for (EnemyBird bird : birds) {
@@ -31,6 +40,9 @@ public class EnemiesManagerImpl implements EnemiesManager {
         }
     }
 
+    /**
+     * Отрисовка всех вражеских птиц
+     */
     @Override
     public void paint(Graphics g) {
         for (EnemyBird bird : birds) {
@@ -38,6 +50,10 @@ public class EnemiesManagerImpl implements EnemiesManager {
         }
     }
 
+    /**
+     * Генерация вражеских птиц.
+     * Метод может быть вызван только один раз.
+     */
     @Override
     public void spawn() {
         if (!spawned) {
