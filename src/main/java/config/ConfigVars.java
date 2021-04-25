@@ -9,7 +9,7 @@ public class ConfigVars {
     public static final int tikRate = 50;
 
     // Включен ли звук
-    public static final boolean isSoundEnabled = true;
+    public static boolean isSoundEnabled = true;
 
     /**
      * Enemy settings
@@ -18,10 +18,10 @@ public class ConfigVars {
     public static int enemySpeed = 10;
 
     // Количество вражеских птиц
-    public static final int enemiesCount = 10;
+    public static int enemiesCount = 10;
 
     // Увеличение скорости врага за уровень
-    public static final int deltaEnemySpeed = 5;
+    public static int deltaEnemySpeed = 5;
 
     /**
      * Player settings
@@ -33,13 +33,13 @@ public class ConfigVars {
     public static final int playerGravity = 5;
 
     // Урон при столкновении для игрока
-    public static final int playerIntersectDamage = 500;
+    public static int playerIntersectDamage = 500;
 
     // Количество здоровья игрока
     public static final int playerHp = 1000;
 
     // Минимальная задержка между выстрелами игрока в мили секундах
-    public static final int playerShootDelay = 500;
+    public static int playerShootDelay = 500;
 
     // Задержка проигрывания звука прыжка между прыжками(чтобы звуки прыжков не накладывались друг на друга) в мили секундах
     public static final int playerJumpSoundDelay = 500;
@@ -48,7 +48,7 @@ public class ConfigVars {
      * Kit settings
      */
     // Количество аптечек
-    public static final int kitsCount = 1;
+    public static int kitsCount = 1;
 
     // Время появления аптечек в мили секундах
     public static final int kitDelay = 5000;
