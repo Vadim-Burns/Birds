@@ -13,6 +13,9 @@ public class Kit extends Actor implements Intersectable, UnExitable {
     public Kit() {
         super(100, 100, "kit.png");
 
+        setFrameHeight(50);
+        setFrameWidth(50);
+
         respawn();
 
         startMovementThread();
