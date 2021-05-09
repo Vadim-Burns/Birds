@@ -1,76 +1,78 @@
 package models;
 
+import interfaces.Intersectable;
+import interfaces.Paintable;
 import textures.RectangularCollider;
 import textures.Sprite;
 
 import java.awt.*;
 
-public abstract class Actor {
+public abstract class Actor implements Intersectable, Paintable {
 
-    protected Sprite s;
-    protected RectangularCollider collider;
+    private Sprite sprite;
+    private RectangularCollider collider;
 
     protected boolean active = true;
-    protected int hp = 100;
-    protected int damage = 30;
 
-    public void damage(int d) {
-        hp -= d;
-        if (hp <= 0) {
-            die();
-        }
-    }
-
-    public void up() {
-        s.setAlpha(-Math.PI / 2);
-    }
-
-    public void down() {
-        s.setAlpha(Math.PI / 2);
-    }
-
-    public void die() {
-        hp = 0;
-        active = false;
-    }
-
-    Actor(double x, double y, String filePath, Point p) {
-        s = new Sprite(x, y, filePath, p);
+    public Actor(double x, double y, String filePath) {
+        sprite = new Sprite(x, y, filePath, new Point(0, 0));
         collider = new RectangularCollider(x, y, 100, 100);
     }
 
-    public void show() {
-        s.show();
-    }
-
-    public void hide() {
-        s.hide();
-    }
-
+    @Override
     public void paint(Graphics g) {
         if (!active) {
             return;
         }
-        s.paint(g);
+
+        sprite.paint(g);
     }
 
 
-    public abstract void onIntersects(Actor act);
-
-    public final void intersects(Actor act) {
-
-        if (collider.intersects(act.collider) && active && act.active) {
-            onIntersects(act);
-            act.onIntersects(this);
-        }
+    @Override
+    public boolean intersects(Intersectable intersectable) {
+        return collider.intersects(intersectable.getCollider());
     }
 
-    public void update(int ms) {
-        if (!active) {
-            return;
-        }
+    @Override
+    public RectangularCollider getCollider() {
+        return collider;
+    }
 
-        s.update(ms);
-        collider.update(s.getX(), s.getY());
+    protected void changePoint(double x, double y) {
+        sprite.changePoint(x, y);
+        collider.update(x, y);
+    }
+
+    protected double getX() {
+        return sprite.getX();
+    }
+
+    protected double getY() {
+        return sprite.getY();
+    }
+
+    protected void addFrame(Point p) {
+        sprite.addFrame(p);
+    }
+
+    protected int getFrameWidth() {
+        return sprite.getFrameWidth();
+    }
+
+    protected int getFrameHeight() {
+        return sprite.getFrameHeight();
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    protected void setFrameHeight(int frameHeight) {
+        sprite.setFrameHeight(frameHeight);
+    }
+
+    protected void setFrameWidth(int frameWidth) {
+        sprite.setFrameWidth(frameWidth);
     }
 }

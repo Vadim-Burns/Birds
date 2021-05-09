@@ -1,119 +1,75 @@
 package ui;
 
-import models.Actor;
-import models.EnemyBird;
-import models.PlayerBird;
-import utils.KeyState;
+import config.CurrentWindowSettings;
+import interfaces.managers.EnemiesManager;
+import interfaces.managers.KitsManager;
+import interfaces.managers.PlayersManager;
+import interfaces.managers.ShootingManager;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 
-public class Panel extends JPanel implements KeyListener {
+public class Panel extends JPanel {
+    private final PlayersManager playersManager;
+    private final EnemiesManager enemiesManager;
+    private final KitsManager kitManager;
+    private final ShootingManager shootingManager;
 
-    KeyState keyState = new KeyState();
-    Actor act = new PlayerBird(300, 400);
-    Actor act2 = new EnemyBird(300, 400);
+    private final Image background;
 
-    private boolean isGameThreadEnabled = false;
+    public Panel(
+            PlayersManager playersManager,
+            EnemiesManager enemiesManager,
+            KitsManager kitManager,
+            ShootingManager shootingManager
+    ) {
 
-    long t1, t2;
-
-    public Panel() {
         setFocusable(true);
-        setBackground(Color.BLACK);
-        t1 = System.currentTimeMillis();
 
-//        new Thread(() -> {
-//            System.out.println("Start UI thread");
-//            while (true) {
-//                try {
-//                    repaint();
-//                    Thread.sleep(10);
-//                } catch (InterruptedException e) {
-//                    break;
-//                }
-//            }
-//        }).start();
-    }
+        this.playersManager = playersManager;
+        this.enemiesManager = enemiesManager;
+        this.kitManager = kitManager;
+        this.shootingManager = shootingManager;
 
-    private void controlGame() {
+        this.background = Toolkit
+                .getDefaultToolkit()
+                .getImage(
+                        Window.class.getClassLoader().getResource("background.png")
+                );
 
-        if (keyState.keyDown(KeyEvent.VK_UP)) {
-            act.up();
-        } else if (keyState.keyDown(KeyEvent.VK_DOWN)) {
-            act.down();
-        }
-
-
-        act.show();
-
-        if (keyState.keyDown(KeyEvent.VK_SPACE)) {
-            act.hide();
-
-
-        }
-
-        keyState.update();
-    }
-
-    private void updateGame(int ms) {
-        act.update(ms);
-        act2.update(ms);
-
-        act.intersects(act2);
-    }
-
-    private void paintGame(Graphics g) {
-        act.paint(g);
-        act2.paint(g);
-    }
-
-
-    @Override
-    protected void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        startGameThread(g);
-    }
-
-    private void startGameThread(Graphics g) {
-        if (!isGameThreadEnabled) {
-            isGameThreadEnabled = true;
-
-            new Thread(() -> {
-                while (true) {
-                    try {
-                        t2 = System.currentTimeMillis();
-                        int ms = (int) (t2 - t1);
-
-                        controlGame();
-                        updateGame(ms);
-                        paintGame(g);
-
-                        t1 = t2;
-
-                        Thread.sleep(100);
-                    } catch (InterruptedException e) {
-                        break;
-                    }
-                }
-            }).start();
-        }
+        add(InfoPanel.getDefaultInfoPanel());
     }
 
     @Override
-    public void keyTyped(KeyEvent e) {
+    public void paint(Graphics g) {
+        super.paint(g);
 
+        CurrentWindowSettings.width = getWidth();
+        CurrentWindowSettings.height = getHeight();
+
+        enemiesManager.spawn();
+        kitManager.spawn();
+
+        g.drawImage(
+                background,
+                0, 0,
+                getWidth(), getHeight(),
+                this
+        );
+
+        processGame();
+
+        playersManager.paint(g);
+        enemiesManager.paint(g);
+        kitManager.paint(g);
+        shootingManager.paint(g);
+        InfoPanel.getDefaultInfoPanel().paint(g);
     }
 
-    @Override
-    public void keyPressed(KeyEvent e) {
-        keyState.setKeyState(e.getKeyCode(), true);
-    }
+    private void processGame() {
+        enemiesManager.checkIntersections(shootingManager.getShoots());
 
-    @Override
-    public void keyReleased(KeyEvent e) {
-        keyState.setKeyState(e.getKeyCode(), false);
+        playersManager.checkIntersections(enemiesManager.getBirds());
+        playersManager.checkIntersections(kitManager.getKits());
     }
 }
